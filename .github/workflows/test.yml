@@ -24,4 +24,5 @@ jobs:
         java-version: '9.0.4'
         java-package: jdk
         architecture: x64
-    - run: java -cp java JavaFile1
+    - run: javac JavaFile1.java
+    - run: java JavaFile1
