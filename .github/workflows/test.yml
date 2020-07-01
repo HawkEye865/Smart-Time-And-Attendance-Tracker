@@ -25,5 +25,5 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - run: npm i
-            npm run build:stat
+    - run: npm install
+            npm start
