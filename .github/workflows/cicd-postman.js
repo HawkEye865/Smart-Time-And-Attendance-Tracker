@@ -2,7 +2,7 @@ const newman = require('newman'); // require newman in your project
 
 // call newman.run to pass `options` object and wait for callback
 newman.run({
-    collection: require('cicd-postman-integration.postman_collection.json'),
+    collection: 'cicd-postman-integration.postman_collection.json',
     reporters: 'cli'
 }, function (err) {
     if (err) { throw err; }
