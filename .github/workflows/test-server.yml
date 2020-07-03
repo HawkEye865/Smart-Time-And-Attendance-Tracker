@@ -26,4 +26,12 @@ jobs:
       with:
         node-version: 12.x
     - run: npm install newman
-            newman run cicd-postman-integration.postman_collection.json
+      
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: STAT-server
+    steps:
+      - uses: actions/checkout@v2
+      - run: newman run cicd-postman-integration.postman_collection.json
