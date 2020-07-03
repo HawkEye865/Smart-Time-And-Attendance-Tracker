@@ -41,4 +41,4 @@ jobs:
       with:
         node-version: 12.x
     - run: npm install nodemon
-    - run: newman run cicd-postman-integration.postman_collection.json
+    - run: node cicd-postman.js
