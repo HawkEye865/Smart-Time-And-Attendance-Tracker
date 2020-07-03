@@ -30,9 +30,6 @@ jobs:
   api-test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: STAT-server
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -40,5 +37,5 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - run: npm install
-            node cicd-postman
+    - run: npm install nodemon
+    - run: node cicd-postman.js
