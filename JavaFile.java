@@ -1,4 +1,4 @@
-public class JavaFile1
+public class JavaFile
 {
 	public static void main(String[] args) throws Exception
 	{
