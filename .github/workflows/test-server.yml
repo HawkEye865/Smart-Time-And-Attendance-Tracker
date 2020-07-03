@@ -25,5 +25,5 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - run: npm install newman
-    - run: newman run cicd-postman-integration.postman_collection.json
+    - run: npm install
+            node cicd-postman.js
