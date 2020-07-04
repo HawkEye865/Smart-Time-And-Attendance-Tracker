@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: STAT-server
+        working-directory: postman_tests
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -41,4 +41,4 @@ jobs:
       with:
         node-version: 12.x
     - run: npm install
-    - run: node postman_tests/cicd-postman.js
+    - run: node cicd-postman.js
