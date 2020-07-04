@@ -40,6 +40,5 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - run: npm install nodemon
-    - run: nodemon
-    - run: node cicd-postman.js
+    - run: npm install
+    - run: node postman_tests/cicd-postman.js
