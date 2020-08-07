@@ -425,7 +425,7 @@
     </div>
 
     <div class="modal-body">
-      <form>
+      <form id="addTeamForm" [formGroup]="addTeamForm">
         <mat-form-field appearance="standard" class="col-12">
           <mat-label>Team Name</mat-label>
           <input matInput formControlName="name" placeholder="Team A" name = "name" required>
