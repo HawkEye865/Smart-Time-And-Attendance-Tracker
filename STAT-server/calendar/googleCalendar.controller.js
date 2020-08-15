@@ -60,11 +60,15 @@ module.exports.getEvents = (req, response) => {
 
     //Get events on calendar
     var date=new Date();
+    var test=new Date();
     //date.setDate(date.getDate() - 7)
+    //console.log("asasasasasa")
+    //console.log("fkjdbkjdfbvkdv" +(new Date( test.setDate(test.getDate() - 7) )).toISOString());
     const calendar = google.calendar({version: 'v3', auth});
     calendar.events.list({
       calendarId: 'primary',
       timeMin: (new Date( date.setDate(date.getDate() - 7) )).toISOString(),
+      timeMax:test.toISOString(),
       singleEvents: true,
       orderBy: 'startTime',
     }, (err, res) => {
