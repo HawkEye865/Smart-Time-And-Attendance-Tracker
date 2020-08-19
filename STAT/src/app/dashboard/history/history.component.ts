@@ -1,3 +1,28 @@
+/**
+  * @file STAT\src\app\dashboard\history\history.component.ts
+  * @author Vianka Naidoo, Munashe Mujaji
+  * @fileoverview This file handles all the functions of the history component
+  * @date 13 June 2020
+ */
+
+/**
+* Filename:             STAT\src\app\dashboard\history\history.component.ts
+*
+* Author:               Vianka Naidoo, Munashe Mujaji
+*   
+* File Creation Date:   13 June 2020
+*
+* Development Group:    Visionary
+*
+* Project:              Smart Time and Attendance Tracker
+*
+* Description:          This file handles all the functions of the history component
+*
+*/ 
+
+
+
+
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { HistoryService } from 'src/app/shared/services/history.service';

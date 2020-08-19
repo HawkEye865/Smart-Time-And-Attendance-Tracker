@@ -1,3 +1,26 @@
+/**
+  * @file STAT\src\app\dashboard\teams\teams.component.ts
+  * @author Vianka Naidoo, Munashe Mujaji
+  * @fileoverview This file handles all the functions of the teams component
+  * @date 13 June 2020
+ */
+
+/**
+* Filename:             STAT\src\app\dashboard\teams\teams.component.ts
+*
+* Author:               Vianka Naidoo, Munashe Mujaji
+*   
+* File Creation Date:   13 June 2020
+*
+* Development Group:    Visionary
+*
+* Project:              Smart Time and Attendance Tracker
+*
+* Description:          This file handles all the functions of the teams component
+*
+*/ 
+
+
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';

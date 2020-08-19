@@ -1,3 +1,25 @@
+/**
+  * @file STAT\src\app\shared\components\header\header.component.ts
+  * @author Vianka Naidoo, Munashe Mujaji
+  * @fileoverview This file handles all the functions of the header component
+  * @date 13 June 2020
+ */
+
+/**
+* Filename:             STAT\src\app\shared\components\header\header.component.ts
+*
+* Author:               Vianka Naidoo, Munashe Mujaji
+*   
+* File Creation Date:   13 June 2020
+*
+* Development Group:    Visionary
+*
+* Project:              Smart Time and Attendance Tracker
+*
+* Description:          This file handles all the functions of the header component
+*
+*/ 
+
 import { Component, OnInit, Input } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { HeaderService } from '../../services/header.service';

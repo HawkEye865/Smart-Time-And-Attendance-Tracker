@@ -1,3 +1,25 @@
+/**
+  * @file STAT\src\app\dashboard\today\today.component.ts
+  * @author Vianka Naidoo, Munashe Mujaji
+  * @fileoverview This file handles all the functions of the today component
+  * @date 13 June 2020
+ */
+
+/**
+* Filename:             STAT\src\app\dashboard\today\today.component.ts
+*
+* Author:               Vianka Naidoo, Munashe Mujaji
+*   
+* File Creation Date:   13 June 2020
+*
+* Development Group:    Visionary
+*
+* Project:              Smart Time and Attendance Tracker
+*
+* Description:          This file handles all the functions of the today component
+*
+*/ 
+
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { TrackingService } from 'src/app/shared/services/tracking.service';
