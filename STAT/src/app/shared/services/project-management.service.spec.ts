@@ -1,3 +1,24 @@
+/**
+  * @file STAT\src\app\shared\services\project-management.spec.ts
+  * @author Vianka Naidoo, Munashe Mujaji
+  * @fileoverview This file handles all the tests of the project-management services
+  * @date 13 June 2020
+ */
+
+/**
+* Filename:            STAT\src\app\shared\services\project-management.service.spec.ts
+*
+* Author:               Vianka Naidoo, Munashe Mujaji
+*   
+* File Creation Date:   13 June 2020
+*
+* Development Group:    Visionary
+*
+* Project:              Smart Time and Attendance Tracker
+*
+* Description:          This file handles all the tests of the project-management services
+*/
+
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ProjectManagementService } from './project-management.service';

@@ -1,3 +1,25 @@
+/**
+  * @file STAT\src\app\shared\services\history.service.ts
+  * @author Vianka Naidoo, Munashe Mujaji
+  * @fileoverview This file handles all the functions of the history services
+  * @date 13 June 2020
+ */
+
+/**
+* Filename:             STAT\src\app\shared\services\history.service.ts
+*
+* Author:               Vianka Naidoo, Munashe Mujaji
+*   
+* File Creation Date:   13 June 2020
+*
+* Development Group:    Visionary
+*
+* Project:              Smart Time and Attendance Tracker
+*
+* Description:          This file handles all the functions of the history services
+*
+*/ 
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 

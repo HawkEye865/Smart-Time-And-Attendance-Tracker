@@ -1,3 +1,25 @@
+/**
+  * @file STAT\src\app\shared\services\tracking.service.ts
+  * @author Vianka Naidoo, Munashe Mujaji
+  * @fileoverview This file handles all the functions of the tracking services
+  * @date 13 June 2020
+ */
+
+/**
+* Filename:             STAT\src\app\shared\services\tracking.service.ts
+*
+* Author:               Vianka Naidoo, Munashe Mujaji
+*   
+* File Creation Date:   13 June 2020
+*
+* Development Group:    Visionary
+*
+* Project:              Smart Time and Attendance Tracker
+*
+* Description:          This file handles all the functions of the tracking services
+*
+*/ 
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {formatDate} from '@angular/common';
