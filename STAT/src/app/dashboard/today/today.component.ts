@@ -158,59 +158,22 @@ export class TodayComponent implements OnInit {
   }
 
   //Add an automatic time entry from form
-  addAutomaticEntry(form : NgForm)
+  /*addAutomaticEntry(form : NgForm)
     {
         this.service.addATimeEntry(form, localStorage.getItem('token')).subscribe((data) => {
-          this.service.EntryID = data['timeEntryID'];
-          localStorage.setItem('currentlyTracking', data['timeEntryID']);
-
-          var details = {'description' : form['description'], 'projectName': form['projectName'], 'projectID': form['projectID'],'taskID': form['taskID'],'taskName':  form['taskName'] };
-          this.currentlyTracking.projectName = form['projectName']
-          this.currentlyTracking.taskName = form['taskName']
-          this.currentlyTracking.description = form['description']
-
-          const options = {
-            year: "numeric",
-            month:"short",
-            day:"2-digit"
-          }
-          this.currentlyTracking.date = new Date().toLocaleDateString('en-US', options)
-  
-          localStorage.setItem('currentlyTrackingDetails',JSON.stringify(details));
-
-          this.tracking();
-          },
-          error => {
-            console.log(error);
-            let errorCode = error['status'];
-            if (errorCode == '403')
-              this.headerService.kickOut();
-
-          });
-   }this.stop = false;
-  }, 60000);
-      
-  }
-
-  stopTracking()
-  {
-    console.log("Stop");
-    this.stop = true;
-    this.trackingNow =false;
-    /*localStorage.removeItem('timing');
-    localStorage.removeItem('trackingNow');*/
-    localStorage.removeItem('currentlyTracking');
-    localStorage.removeItem('currentlyTrackingDetails');
-    this.updateEntry().subscribe((data) => { this.stopTracking();},
+        console.log(data);
+        this.service.EntryID = data['TimeEntryID'];
+        //this.reload()
+      },
       error => {
-        let errorCode = error['status'];
-        if (errorCode == '403')
-          this.headerService.kickOut();
-        });
-  }
+        console.log(error);
+        //console.log(error.error.message);
+
+      });
+  }*/
 
   //Update a time entry. Parameters are the new end time and active time
-  updateEntry(endTime, activeTime)
+  /*updateEntry(endTime, activeTime)
   {
       endTime =  new Date().getTime();
       activeTime = 10;
@@ -223,7 +186,7 @@ export class TodayComponent implements OnInit {
       //console.log(error.error.message);
 
     });
-  }
+  }*/
 
   // edit tracking entry
   editEntry(form : NgForm) {
