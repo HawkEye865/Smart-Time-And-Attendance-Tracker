@@ -14,7 +14,8 @@ export class MainComponent implements OnInit {
   active : string;
 
   constructor(public service : AccountManagementService) {
-    this.isAuth = true
+    //this.isAuth = true;
+    this.isAuth = false;
   }
 
   ngOnInit(): void {

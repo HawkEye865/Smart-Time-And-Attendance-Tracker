@@ -77,7 +77,7 @@ export class TodayComponent implements OnInit {
     this.date4.setDate(this.date.getDate()-4)
     this.date5.setDate(this.date.getDate()-5)
 
-    this.reload()
+    //this.reload()
 
   }
 
