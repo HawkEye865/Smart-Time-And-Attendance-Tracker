@@ -14,8 +14,14 @@ export class MainComponent implements OnInit {
   active : string;
 
   constructor(public service : AccountManagementService) {
-    //this.isAuth = true;
-    this.isAuth = false;
+    // this.service.isAuthenticated(localStorage.getItem('token')).subscribe((data) => {
+    //   console.log(data);
+    // },
+    // error => {
+    //   console.log(error);
+    // });
+    
+    this.isAuth = true;
   }
 
   ngOnInit(): void {
