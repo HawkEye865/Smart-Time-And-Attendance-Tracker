@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "7"
+  - "6"
+
+script: echo "Setting up Travis CI/CD"
+
+jobs:
+  include:
+    - stage: server build
+      node_js: "7"
+      script:
+        - npm install
+        - nodemon
