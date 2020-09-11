@@ -1,10 +1,13 @@
-language: node_js
-node_js:
-  - "7"
-  - "6"
+language: ruby
+rvm:
+- 1.9.3
+- 2.0.0
+- 2.1.0
+nvm:
+- 12.18.2
 
 before_install:
-  - travis openssl aes-256-cbc -K $encrypted_b46af4c0cf9c_key -iv $encrypted_b46af4c0cf9c_iv -in STAT-server/config/config.json.enc -out config/config.json -d
+  - travis openssl aes-256-cbc -K $encrypted_xy72b55268g_key -iv $encrypted_xy72b55268g_iv -in STAT-server/config/config.json.enc -out config/config.json -d
 
 jobs:
   include:
