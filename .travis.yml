@@ -3,12 +3,13 @@ node_js:
   - "7"
   - "6"
 
-script: echo "Setting up Travis CI/CD"
+before_install:
+  - travis openssl aes-256-cbc -K $encrypted_b46af4c0cf9c_key -iv $encrypted_b46af4c0cf9c_iv -in STAT-server/config/config.json.enc -out config/config.json -d
 
 jobs:
   include:
     - stage: server build
       node_js: "7"
-      #script:
-        #- npm install
-        #- nodemon
+      script:
+        - npm install
+        - nodemon
