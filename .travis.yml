@@ -1,12 +1,16 @@
 matrix:
   include:
-    - language: node_js
-      node_js:
-        - 12.18.2
-      script:
-        - cd STAT-server
-        - npm install
-        - npm install newman
-        - npm install nodemon
-        - nodemon
-        - newman run AutomatedDemo3.postman_collection.json
+  - language: node_js
+    node_js:
+    - 12.18.2
+    script:
+    - cd STAT-server
+    - npm install
+    - npm install newman
+    - npm install nodemon
+    - nodemon
+    - newman run AutomatedDemo3.postman_collection.json
+env:
+  global:
+  - secure: K2/m9gQn2CmzvHNhAUOAIAM+ozu1NLU2OkELg8QQ35Q0+IRDRyDYZFcV6InEAMK0WuUIi2a7l/WtwLUZhP2o6j8KZGbFWKfO7/Uu5seQdh+C74X7/8Rb94RUqIt5xAAr3u660OybaLJrf1q7Sz7G6OONyR/qnZ6iKxhdkf0ett/THPYwgXm6arLu/Gxd4ng63vGmrf7mikhFOw7PfsZTHaJoz/zUDfJJQV8/TrseEwjVKrwkZvEIVxeXHybXL0rmF2YwXWRzzz0wLm1ddKTBP/ghwGoGWnmf9NRD4Gq0yWPBoswpHgfexfUYtHv8A9I239XCDlFR1zBdTrFDH/AUm9qgAkwrCjanPxTIoeEhnHkeU40RnHb/uIVOrqdGDgx+BitRmX2oYyh6xGl/S3Y3fIhiZ0TvxiEXTb6R6LamtKeIXOYyGaHtPZA8d59oQK2lcXrzrPva+wSVe1VRVTDq6c6lDUVmOngdyVHJpyxS0GMp3es2Gd5rzxCNRf9cdy61DDjPDrCKyZ5j7Jl54wPssxMODT16OR3+NV5coO+NVjO7EQFZP90ozbDbi2FEOXNoN0ReAegYzcsYcoXOFKvxz50ck/HC+lZdvnFYAwTg4LGsG6lYpeAKJf70tN34chaEGQXUYHFVDQFffOsnu0XV2maOBl3iCfTzs0Bng+BZYAA=
+  - secure: c4ix5V9DARJKyFZJT3a6ZWcsDr1peS+38JBRI25JO0Vb5Zi+b2p/v+XEnYs7PSduq1NqpbtYcQTDK7zsCL483dFbpaaP9oolDp6t+wRggGPxMLCJzYN2LNHT1iYd7hoOJ04uJkqNRwzYtacuv4uSbpwF+LD4P8A/jR19cwWE4tmHNXoS9IBpXkflgnNpPLDrGO6dYdMaaa/4QqWkwpbMYsBps4K0wYhBVuIPOU3D1wCbKdZNdEjf5K+0r3Gvx7CQZb/t1TbhoUH9B40bFIDjhyDqbSTOIclxVROEcZ506HMofm9sCtnzM5NL0E2ipZ8FAwEcOWHy5UoP11tbpnPxzJ0xVMuZzpMwo+NtRrWr04DOne90+j2aFkEaKrjKXLRYUXwLG8/b68BZmlRUyt2lHFJNJejLSurEShFlTdfo6l/YJbCnoNHt8JUWl+9J2vHPWbfFqc6jPxI2uyY0Bpc8DvpNWysG+7HyEN895sTgvMnsvR4cnAMxGs5+7oWAm41vIhm6Db0+AuwmSk4U3fW9w/guPBn0KgncI6fvYiAG0EpDwd0NGSfGyhhw1kjlAzwVo6bFsAFYhVRO9xfvajRxjOhKp+zXI2A7f5Qb6WTKP4RJ4AtcPesIHzoOSBN0eoLX7Rys20uLdRMd0ppydZP4lq1W2pXUqdE2UfsM7IUHWXo=
