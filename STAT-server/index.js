@@ -19,7 +19,7 @@
 * Description:          This file initializes the middleware and starts the server.
 *
 */
-require('./conf/config');
+require('./config/conf');
 require('./models/db');
 require('./config/passportConfig');
 
