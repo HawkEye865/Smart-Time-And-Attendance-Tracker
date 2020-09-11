@@ -5,7 +5,8 @@ matrix:
         - 12.18.2
       script:
         - npm install
-        - npm install nodemon
-        - nodemon
         - npm install newman
+        - npm install nodemon
+        - cd STAT-server
+        - nodemon
         - newman run AutomatedDemo3.postman_collection.json
