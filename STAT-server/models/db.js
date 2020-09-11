@@ -21,7 +21,7 @@
 */ 
 
 const mongoose = require('mongoose');
-require("../config/config.js");
+require("../config/conf.js");
 
 mongoose.connect(process.env.MONGODB_URI, (err) => {
     if (!err) { console.log('MongoDB connection succeeded.'); }
