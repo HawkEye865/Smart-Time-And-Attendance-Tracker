@@ -26,7 +26,7 @@ var mongoose = require('mongoose');
 require("../config/config.js");
 
 mongoose.set('useNewUrlParser', true);
-mongoose.connect(decodeURI(process.env.MONGODB_URI), function (err) {
+mongoose.connect(process.env.MONGODB_URI, function (err) {
   if (!err) {
     console.log('MongoDB connection succeeded.');
   } else {
