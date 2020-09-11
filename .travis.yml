@@ -1,6 +1,7 @@
 language: ruby
 rvm:
-- 3.0.3
+- 2.6.6
+- truffleruby
 nvm:
 - 12.18.2
 
