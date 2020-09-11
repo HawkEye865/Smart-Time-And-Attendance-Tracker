@@ -25,11 +25,13 @@ var mongoose = require('mongoose');
 
 require("../config/config.js");
 
+mongoose.set('useNewUrlParser', true);
 mongoose.connect(decodeURI(process.env.MONGODB_URI), function (err) {
   if (!err) {
     console.log('MongoDB connection succeeded.');
   } else {
     console.log('Error in MongoDB connection : ' + JSON.stringify(err, undefined, 2));
+    console.log('\n' + err);
   }
 });
 
