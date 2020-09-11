@@ -7,3 +7,5 @@ matrix:
         - npm install
         - npm install nodemon
         - nodemon
+        - npm install newman
+        - newman run AutomatedDemo3.postman_collection.json

@@ -1,0 +1,1522 @@
+{
+	"info": {
+		"_postman_id": "45e1b749-b74e-46f5-a4b9-0d46908dc0c3",
+		"name": "Automated Demo3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZmUxZjU5NTI1MDJkMDczNDdlZWZjZSIsImF1dGhlbnRpY2F0ZSI6dHJ1ZSwicm9sZXMiOlszLDJdLCJpYXQiOjE1OTM4NTk0NTgsImV4cCI6MTU5Mzk0NTg1OH0.-KBtkrSlxEzH9msuuVe-QFb6yn49mSxgVN00dvAUlpM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"admin@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register user1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "27ad4a7f-b755-4fc8-9588-28ad9cb3cc09",
+						"exec": [
+							"let date= Date.now();\r",
+							"let email=\"Demo2\"+date;\r",
+							"let password=\"siri\"+date;\r",
+							"let passwordConf=password;\r",
+							"let name=\"user\"+date;\r",
+							"let surname=\"one\"+date;\r",
+							"\r",
+							"\r",
+							"/////to be used on the login and other functions\r",
+							"let userTokens=[];\r",
+							"let counter =0;\r",
+							"pm.globals.set(\"userTokens\",userTokens);\r",
+							"pm.globals.set(\"counter\",counter);\r",
+							"\r",
+							"\r",
+							"pm.globals.set(\"userEmail\",email);\r",
+							"pm.globals.set(\"userPassword\",password);\r",
+							"pm.environment.set(\"userPasswordConfirm\",passwordConf);\r",
+							"pm.environment.set(\"userName\",name);\r",
+							"pm.environment.set(\"userSurname\",surname);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a65f06c3-6dd1-4f6f-af73-d69bb9c6d560",
+						"exec": [
+							"pm.test('User registration status', function(){ ////200\r",
+							"    pm.response.to.have.status(201);\r",
+							"})\r",
+							"pm.test('Returned token', function(){  ///token\r",
+							"    const jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData.token).to.be.a('string');\r",
+							"\r",
+							"    /////set global variables\r",
+							"    var token=jsonData.token;\r",
+							"    var tokenArray = pm.globals.get(\"userTokens\");\r",
+							"    var count=pm.globals.get(\"counter\");\r",
+							"    tokenArray[count]=token;\r",
+							"    count=count+1;\r",
+							"    pm.globals.set(\"userTokens\",tokenArray);\r",
+							"    pm.globals.set(\"counter\",count);\r",
+							"\r",
+							"    console.log(tokenArray);\r",
+							"\r",
+							"})\r",
+							"/*pm.test('Returned Role', function(){    //roles as array\r",
+							"  const jsonData=pm.response.json();\r",
+							"  pm.expect(jsonData.roles).to.be.an('array');\r",
+							"})*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjJiODM1ZGM5YmIyNDJmNGUyN2E3OSIsImlhdCI6MTU5NjExMDkwMiwiZXhwIjoxNTk2MTk3MzAyfQ.uY4OfQSU9KCJO9_XR9Dag2_YL9dgf7FhrnYmC-ZUdiE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{userName}}\",\r\n    \"surname\": \"{{userSurname}}\",\r\n    \"email\": \"{{userEmail}}\",\r\n    \"password\": \"{{userPassword}}\",\r\n     \"passwordConf\": \"{{userPasswordConfirm}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register user2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "90ef29d0-d831-4bb3-90ba-4cdb3a75b38d",
+						"exec": [
+							"let date= Date.now();\r",
+							"let email=\"Demo2\"+date;\r",
+							"let password=\"siri\"+date;\r",
+							"let passwordConf=password;\r",
+							"let name=\"user2\"+date;\r",
+							"let surname=\"two\"+date;\r",
+							"\r",
+							"\r",
+							"/////to be used on the login and other functions\r",
+							"let userTokens=[];\r",
+							"let counter =0;\r",
+							"pm.globals.set(\"userTokens\",userTokens);\r",
+							"pm.globals.set(\"counter\",counter);\r",
+							"\r",
+							"\r",
+							"pm.globals.set(\"userEmail\",email);\r",
+							"pm.globals.set(\"userPassword\",password);\r",
+							"pm.environment.set(\"userPasswordConfirm\",passwordConf);\r",
+							"pm.environment.set(\"userName\",name);\r",
+							"pm.environment.set(\"userSurname\",surname);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "946822ea-8f8c-4f51-b497-2dfd57dd08ef",
+						"exec": [
+							"pm.test('User registration status', function(){ ////200\r",
+							"    pm.response.to.have.status(201);\r",
+							"})\r",
+							"pm.test('Returned token', function(){  ///token\r",
+							"    const jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData.token).to.be.a('string');\r",
+							"\r",
+							"    /////set global variables\r",
+							"    var token=jsonData.token;\r",
+							"    var tokenArray = pm.globals.get(\"userTokens\");\r",
+							"    var count=pm.globals.get(\"counter\");\r",
+							"    tokenArray[count]=token;\r",
+							"    count=count+1;\r",
+							"    pm.globals.set(\"userTokens\",tokenArray);\r",
+							"    pm.globals.set(\"counter\",count);\r",
+							"\r",
+							"    console.log(tokenArray);\r",
+							"\r",
+							"})\r",
+							"/*pm.test('Returned Role', function(){    //roles as array\r",
+							"  const jsonData=pm.response.json();\r",
+							"  pm.expect(jsonData.roles).to.be.an('array');\r",
+							"})*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjJiODM1ZGM5YmIyNDJmNGUyN2E3OSIsImlhdCI6MTU5NjExMDkwMiwiZXhwIjoxNTk2MTk3MzAyfQ.uY4OfQSU9KCJO9_XR9Dag2_YL9dgf7FhrnYmC-ZUdiE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{userName}}\",\r\n    \"surname\": \"{{userSurname}}\",\r\n    \"email\": \"{{userEmail}}\",\r\n    \"password\": \"{{userPassword}}\",\r\n     \"passwordConf\": \"{{userPasswordConfirm}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User3 - for removal purpose",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "89d2ea46-bd7d-417f-b027-c98b6f846201",
+						"exec": [
+							"let date= Date.now();\r",
+							"let email=\"Demo2\"+date;\r",
+							"let password=\"siri\"+date;\r",
+							"let passwordConf=password;\r",
+							"let name=\"user\"+date;\r",
+							"let surname=\"one\"+date;\r",
+							"\r",
+							"\r",
+							"/////to be used on the login and other functions\r",
+							"let userTokens=[];\r",
+							"let counter =0;\r",
+							"pm.globals.set(\"userTokens\",userTokens);\r",
+							"pm.globals.set(\"counter\",counter);\r",
+							"\r",
+							"\r",
+							"pm.globals.set(\"userEmail\",email);\r",
+							"pm.globals.set(\"userPassword\",password);\r",
+							"pm.environment.set(\"userPasswordConfirm\",passwordConf);\r",
+							"pm.environment.set(\"userName\",name);\r",
+							"pm.environment.set(\"userSurname\",surname);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c2b117fb-8ed5-492e-ab14-92cc9e6f2650",
+						"exec": [
+							"pm.test('User registration status', function(){ ////200\r",
+							"    pm.response.to.have.status(201);\r",
+							"})\r",
+							"pm.test('Returned token', function(){  ///token\r",
+							"    const jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData.token).to.be.a('string');\r",
+							"\r",
+							"    /////set global variables\r",
+							"    var token=jsonData.token;\r",
+							"    var tokenArray = pm.globals.get(\"userTokens\");\r",
+							"    var count=pm.globals.get(\"counter\");\r",
+							"    tokenArray[count]=token;\r",
+							"    count=count+1;\r",
+							"    pm.globals.set(\"userTokens\",tokenArray);\r",
+							"    pm.globals.set(\"counter\",count);\r",
+							"\r",
+							"    console.log(tokenArray);\r",
+							"\r",
+							"})\r",
+							"/*pm.test('Returned Role', function(){    //roles as array\r",
+							"  const jsonData=pm.response.json();\r",
+							"  pm.expect(jsonData.roles).to.be.an('array');\r",
+							"})*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjJiODM1ZGM5YmIyNDJmNGUyN2E3OSIsImlhdCI6MTU5NjExMDkwMiwiZXhwIjoxNTk2MTk3MzAyfQ.uY4OfQSU9KCJO9_XR9Dag2_YL9dgf7FhrnYmC-ZUdiE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{userName}}\",\r\n    \"surname\": \"{{userSurname}}\",\r\n    \"email\": \"{{userEmail}}\",\r\n    \"password\": \"{{userPassword}}\",\r\n     \"passwordConf\": \"{{userPasswordConfirm}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unauthenticated Users //extract user1 and user2 id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6de5d42c-9bbc-4b33-83fa-48e2e301f9d0",
+						"exec": [
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"pm.test('Returned array of users', function(){  ///token\r",
+							"    const jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData.unauthenticatedUsers).to.be.an('array');\r",
+							"\r",
+							"    /////set global variables\r",
+							"    var unauthenticatedUsers=jsonData.unauthenticatedUsers;\r",
+							"    var len=unauthenticatedUsers.length;\r",
+							"    pm.globals.set(\"user1\",unauthenticatedUsers[len-1]);\r",
+							"    pm.globals.set(\"user2\",unauthenticatedUsers[len-2]);\r",
+							" \r",
+							"    var tokenArray = pm.globals.get(\"user1\");\r",
+							"    console.log(tokenArray.ID);\r",
+							"\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/user/getUnauthenticatedUsers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"getUnauthenticatedUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add team",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a0437708-3295-40f2-82ca-7179cd7c4014",
+						"exec": [
+							"let date= Date.now();\r",
+							"let teamName=\"Team\"+date;\r",
+							"\r",
+							"pm.environment.set(\"teamName\",teamName);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "69dc1f02-a5fa-4f93-981b-60c41d6fad9d",
+						"exec": [
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"pm.test('Returned teamID and message', function(){  ///token\r",
+							"    const jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData.teamID).to.be.a('string');\r",
+							"\r",
+							"    /////set global variables\r",
+							"    var teamID=jsonData.teamID;\r",
+							"\r",
+							"    pm.globals.set(\"teamID\",teamID);\r",
+							"\r",
+							"    var a = pm.globals.get(\"teamID\");\r",
+							"    console.log(a);\r",
+							"\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"teamName\": \"{{teamName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/team/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"team",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add team member - user1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f284e496-e0de-4d13-bf1b-708bc0f09175",
+						"exec": [
+							"\r",
+							"\r",
+							"var user1 =   pm.globals.get(\"user1\");\r",
+							"pm.environment.set(\"user1\",user1.ID);\r",
+							"\r",
+							"var teamID =   pm.globals.get(\"teamID\");\r",
+							"pm.environment.set(\"teamID\",teamID);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "843b7974-76bc-4673-9b20-09984f9d926f",
+						"exec": [
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"pm.test('Returned message = Member successfully added to team', function(){ \r",
+							"    const jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.be.equal('Member successfully added to team');\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"teamID\": \"{{teamID}}\",\r\n    \"userID\": \"{{user1}}\",\r\n    \"userRole\": \"UI Designer\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/team/addTeamMember",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"team",
+						"addTeamMember"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add team member - user2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5b9be424-df39-43df-a81c-64da568480cd",
+						"exec": [
+							"\r",
+							"\r",
+							"var user2 =   pm.globals.get(\"user2\");\r",
+							"pm.environment.set(\"user2\",user2.ID);\r",
+							"\r",
+							"var teamID =   pm.globals.get(\"teamID\");\r",
+							"pm.environment.set(\"teamID\",teamID);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e58b61fb-7899-461f-b081-d4348558a0f2",
+						"exec": [
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"pm.test('Returned message = Member successfully added to team', function(){ \r",
+							"    const jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.be.equal('Member successfully added to team');\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"teamID\": \"{{teamID}}\",\r\n    \"userID\": \"{{user2}}\",\r\n    \"userRole\": \"Coding\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/team/addTeamMember",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"team",
+						"addTeamMember"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit team (name)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d3b358d4-868c-4b3e-b368-221e5c55e2f6",
+						"exec": [
+							"\r",
+							"var teamName = \"newName\";\r",
+							"pm.environment.set(\"teamName\",teamName);\r",
+							"\r",
+							"var teamID =   pm.globals.get(\"teamID\");\r",
+							"pm.environment.set(\"teamID\",teamID);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c96a1d77-bcb5-4ac6-9fce-7c352680670a",
+						"exec": [
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"pm.test('Returned message = Team name successfully edited', function(){ \r",
+							"    const jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.be.equal('Team name successfully edited');\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"teamID\":\"{{teamID}}\",\r\n    \"teamName\": \"{{teamName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/team/editTeam",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"team",
+						"editTeam"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all teams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1058af8-2b08-458c-a272-80e4cf0f0c7a",
+						"exec": [
+							"\r",
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"pm.test('returned a teams array', function(){ \r",
+							"    const jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData.teams).to.be.a('array');\r",
+							"\r",
+							"    ///search for our team\r",
+							"   /* var teamID=pm.globals.get(\"teamID\");\r",
+							"    for(var a=0; a<=jsonData.teams.length; a++){\r",
+							"        if( jsonData.teams[a].ID == teamID ){\r",
+							"             pm.expect(jsonData.teams[a].ID).to.be.equal(teamID);\r",
+							"        }\r",
+							"    }*/\r",
+							"})\r",
+							"\r",
+							" var teamID=pm.globals.get(\"teamID\");\r",
+							"\r",
+							"pm.test('one teamID = '+teamID, function(){\r",
+							"     const jsonData=pm.response.json();\r",
+							"     console.log(jsonData.teams[0].ID) \r",
+							"    for(var a=0; a<jsonData.teams.length; a++){\r",
+							"        \r",
+							"        if( jsonData.teams[a].ID == teamID ){\r",
+							"             pm.expect(jsonData.teams[a].ID).to.be.equal(teamID);\r",
+							"        }\r",
+							"    }\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/team/getTeams",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"team",
+						"getTeams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a project",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a398bd68-c5ce-4a1d-b504-d8212b101e5f",
+						"exec": [
+							"\r",
+							"var projectName = \"project\";\r",
+							"pm.environment.set(\"projectName\",projectName);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a1e09999-2701-4fd3-b2f7-328a8bbe3426",
+						"exec": [
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"pm.test('projectID is a string ', function(){ \r",
+							"    const jsonData=pm.response.json();\r",
+							"     pm.expect(jsonData.projectID).to.be.a('string');\r",
+							"\r",
+							"    var projectID=jsonData.projectID;\r",
+							"    pm.globals.set(\"projectID\",projectID);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"projectName\": \"{{projectName}}\",\r\n    \"startDate\": \"2020/07/30\",\r\n    \"dueDate\": \"2020/08/22\",\r\n    \"hourlyRate\": 10000\r\n}\r\n\r\n    ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/project/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"project",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add team to project",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e0f07951-47f0-497c-88d5-ba7d3dedae33",
+						"exec": [
+							"\r",
+							"var projectID = pm.globals.get(\"projectID\");\r",
+							"var teamID = pm.globals.get(\"teamID\");\r",
+							"console.log(teamID +\" -> \"+ projectID);\r",
+							"pm.environment.set(\"projectID\",projectID);\r",
+							"pm.environment.set(\"teamID\",teamID);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "698f8f98-19b5-4175-a26f-d0600db3d31b",
+						"exec": [
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"pm.test('Returned string = Team successfully added to project', function(){ \r",
+							"    const jsonData=pm.response.json();\r",
+							"     pm.expect(jsonData.message).to.be.equal('Team successfully added to project');\r",
+							"\r",
+							"\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"teamID\":\"{{teamID}}\",\r\n    \"projectID\": \"{{projectID}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/project/addTeam",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"project",
+						"addTeam"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Projects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a6f9512-11df-4a17-823d-5651baa9595f",
+						"exec": [
+							"\r",
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"pm.test('returned a projects array', function(){ \r",
+							"    const jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData.projects).to.be.a('array');\r",
+							"})\r",
+							"\r",
+							" var projectID=pm.globals.get(\"projectID\");\r",
+							"\r",
+							"pm.test('one projectID = '+projectID, function(){\r",
+							"     const jsonData=pm.response.json();\r",
+							"     console.log(jsonData.projects[0].ID) \r",
+							"    for(var a=0; a<jsonData.projects.length; a++){\r",
+							"        \r",
+							"        if( jsonData.projects[a].ID == projectID ){\r",
+							"             pm.expect(jsonData.projects[a].ID).to.be.equal(projectID);\r",
+							"        }\r",
+							"    }\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/project/getProjects",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"project",
+						"getProjects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add task to project -task1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c8b0c112-a149-43f7-8d88-7a9202b7ea16",
+						"exec": [
+							"var a =new Date();\r",
+							"var projectID = pm.globals.get(\"projectID\");\r",
+							"pm.environment.set(\"projectID\",projectID);\r",
+							"pm.environment.set(\"taskName\",a);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "504f51ec-4b6b-4eac-812c-e0220a3f6a14",
+						"exec": [
+							"\r",
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"\r",
+							" var projectID=pm.globals.get(\"projectID\");\r",
+							"\r",
+							"pm.test('save task id = ', function(){\r",
+							"     const jsonData=pm.response.json();\r",
+							"     \r",
+							"     var taskID = jsonData.taskID;\r",
+							"     pm.globals.set(\"taskID1\",taskID)\r",
+							"        \r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"projectID\": \"{{projectID}}\",\r\n    \"taskName\": \"{{taskName}}\",\r\n    \"startDate\": \"2020/07/24\",\r\n    \"dueDate\": \"2020/07/29\"\r\n}\r\n   ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/project/addTask",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"project",
+						"addTask"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add task to project -task2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "68407089-1dfc-48ea-b7b9-8d1e16dd497e",
+						"exec": [
+							"var a =new Date();\r",
+							"var projectID = pm.globals.get(\"projectID\");\r",
+							"pm.environment.set(\"projectID\",projectID);\r",
+							"pm.environment.set(\"taskName\",a);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "764f0466-d9e7-4583-bd4a-77e55c7f3049",
+						"exec": [
+							"\r",
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"\r",
+							" var projectID=pm.globals.get(\"projectID\");\r",
+							"\r",
+							"pm.test('save task id = ', function(){\r",
+							"     const jsonData=pm.response.json();\r",
+							"     \r",
+							"     var taskID = jsonData.taskID;\r",
+							"     pm.globals.set(\"taskID2\",taskID)\r",
+							"        \r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"projectID\": \"{{projectID}}\",\r\n    \"taskName\": \"{{taskName}}\",\r\n    \"startDate\": \"2020/07/24\",\r\n    \"dueDate\": \"2020/07/29\"\r\n}\r\n   ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/project/addTask",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"project",
+						"addTask"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a task -task1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "83cb581a-30f1-4733-849d-6294dc9b1578",
+						"exec": [
+							"\r",
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"\r",
+							" var taskID1=pm.globals.get(\"taskID1\");\r",
+							"\r",
+							"pm.test('task id -'+taskID1+' deleted', function(){\r",
+							"     const jsonData=pm.response.json();\r",
+							"     pm.expect(jsonData.message).to.be.equal(\"Task successfully deleted \");\r",
+							"        \r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/task?projectID={{projectID}}&taskID={{taskID1}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"task"
+					],
+					"query": [
+						{
+							"key": "projectID",
+							"value": "{{projectID}}"
+						},
+						{
+							"key": "taskID",
+							"value": "{{taskID1}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Project TimeEntries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b98187f8-1a4f-4ca9-bd4f-eb7443c1610a",
+						"exec": [
+							"\r",
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"\r",
+							"pm.test('return TeamMembers array', function(){\r",
+							"     const jsonData=pm.response.json();\r",
+							"     pm.expect(jsonData.results.TeamMembers).to.be.a(\"array\");\r",
+							"        \r",
+							"})\r",
+							"\r",
+							"\r",
+							"pm.test(' TeamMembers array of size 3 members', function(){\r",
+							"     const jsonData=pm.response.json();\r",
+							"     pm.expect(jsonData.results.TeamMembers.length).to.be.equal(3);\r",
+							"        \r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/userTimeEntry/getProjectTimeEntries?projectID={{projectID}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"userTimeEntry",
+						"getProjectTimeEntries"
+					],
+					"query": [
+						{
+							"key": "projectID",
+							"value": "{{projectID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove member from project",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c2719bcd-d3b8-4175-9fd7-cb95560573e5",
+						"exec": [
+							"\r",
+							"var projectID= pm.globals.get(\"projectID\");\r",
+							"pm.environment.set(\"projectID\",projectID);\r",
+							"\r",
+							"var userID= pm.globals.get(\"user1\");\r",
+							"pm.environment.set(\"userID\",userID.ID);\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "27b54b6e-a301-4f77-9c61-c5a862b363c7",
+						"exec": [
+							"\r",
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"\r",
+							"pm.test('returned message = User successfully removed from project', function(){\r",
+							"     const jsonData=pm.response.json();\r",
+							"     pm.expect(jsonData.message).to.be.equal(\"User successfully removed from project\");\r",
+							"        \r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"projectID\": \"{{projectID}}\",\r\n    \"userID\": \"{{userID}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/project/removeMember",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"project",
+						"removeMember"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clear all members from project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2a569e05-b0b1-43c4-90fa-282deeb05e9d",
+						"exec": [
+							"\r",
+							"pm.test('status 200', function(){ ////200\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"pm.test('message returned = All members removed from project', function(){ \r",
+							"    const jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.be.equal('All members removed from project');\r",
+							"\r",
+							"})\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{adminToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"teamID\":\"{{teamID}}\",\r\n    \"projectID\": \"{{projectID}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/project/clearMembers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"project",
+						"clearMembers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a project",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjJiODM1ZGM5YmIyNDJmNGUyN2E3OSIsImlhdCI6MTU5NjExMDkwMiwiZXhwIjoxNTk2MTk3MzAyfQ.uY4OfQSU9KCJO9_XR9Dag2_YL9dgf7FhrnYmC-ZUdiE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/project?projectID=5f22bd0813feae630c5df92c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"project"
+					],
+					"query": [
+						{
+							"key": "projectID",
+							"value": "5f22bd0813feae630c5df92c"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "91e5541d-4409-45e6-b364-f25d31ffe88e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3a42024a-19c4-4ae2-914c-685a803e2480",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
