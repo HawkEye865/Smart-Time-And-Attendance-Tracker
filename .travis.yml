@@ -7,6 +7,7 @@ nvm:
 - 12.18.2
 
 before_install:
+  - gem install travis 
   - travis openssl aes-256-cbc -K $encrypted_xy72b55268g_key -iv $encrypted_xy72b55268g_iv -in STAT-server/config/config.json.enc -out config/config.json -d
 
 jobs:
