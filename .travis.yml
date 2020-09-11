@@ -6,7 +6,7 @@ nvm:
 - 12.18.2
 before_install:
 - openssl aes-256-cbc -K $encrypted_b46af4c0cf9c_key -iv $encrypted_b46af4c0cf9c_iv
-  -in config.json.enc -out config/config.json -d
+  -in STAT-server/config/config.json.enc -out STAT-server/config/config.json -d
 jobs:
   include:
   - stage: server build
