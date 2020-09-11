@@ -5,8 +5,7 @@ rvm:
 nvm:
 - 12.18.2
 before_install:
-- openssl aes-256-cbc -K $encrypt_494164896416844154_key -iv $encrypt_949416489618981941_iv
-  -in STAT-server/config/config.json.enc -out STAT-server/config/config.json -d
+- openssl aes-256-cbc -K $encrypted_b46af4c0cf9c_key -iv $encrypted_b46af4c0cf9c_iv -in STAT-server/config/config.json.enc -out STAT-server/config/config.json -d
 jobs:
   include:
   - stage: server build
