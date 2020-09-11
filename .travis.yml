@@ -9,6 +9,6 @@ jobs:
   include:
     - stage: server build
       node_js: "7"
-      script:
-        - npm install
-        - nodemon
+      #script:
+        #- npm install
+        #- nodemon
