@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: "Server start"
         run:
+          cd STAT-server
           npm install nodemon
           nodemon
         env:
