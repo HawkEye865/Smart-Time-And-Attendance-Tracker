@@ -10,7 +10,10 @@ jobs:
       run:
         working-directory: ./STAT-server
     steps:
-    - name: "Change directory"
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+    - name: "Install nodemon"
       run: npm install nodemon
     - name: "Start server"
       run: nodemon
