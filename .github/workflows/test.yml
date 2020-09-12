@@ -4,21 +4,18 @@ on:
     branches: [ testing-github-secrets ]
 
 jobs:
-  build:
+  api-test:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./STAT-server
+        working-directory: STAT-server
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
-        node-version: 10.x
-    - name: "Install nodemon"
-      run:
-        npm install
-        npm install nodemon
-    - name: "Start server"
-      run: nodemon
-      env:
-        MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        node-version: 12.x
+    - run: npm install
+    - run: node cicd-postman.js
