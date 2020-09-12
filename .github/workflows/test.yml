@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: "Install nodemon"
+      - name: "Add command"
           run:
             npm install nodemon
       - name: "Change directory"
