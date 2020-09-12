@@ -12,9 +12,10 @@ jobs:
     steps:
       - name: "Server start"
         run:
-          npm install
           npm install nodemon
+        run:
           nodemon
+          working-directory: STAT-server
         env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
