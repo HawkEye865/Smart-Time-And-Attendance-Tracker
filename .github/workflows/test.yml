@@ -7,12 +7,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: "Change directory"
-          run:
-            cd STAT-server
-      - name: "Start server"
-          run:
-            nodemon
-          env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+    - name: "Change directory"
+      run:
+        cd STAT-server
+    - name: "Start server"
+      run:
+        nodemon
+      env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
