@@ -7,9 +7,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: "Add command"
-          run:
-            npm install nodemon
       - name: "Change directory"
           run:
             cd STAT-server
