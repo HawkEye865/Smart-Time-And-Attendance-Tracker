@@ -4,6 +4,7 @@ on:
     branches: [ testing-github-secrets ]
 
 jobs:
+  build:
     runs-on: ubuntu-latest
     defaults:
       run:
