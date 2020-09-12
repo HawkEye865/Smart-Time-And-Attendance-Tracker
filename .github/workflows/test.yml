@@ -10,6 +10,9 @@ jobs:
       run:
         working-directory: STAT-server
     steps:
+      - uses:
+          actions/checkout@v2
+          actions/setup-node@v1
       - name: "Server start"
         with:
           node-version: 12.x
