@@ -6,6 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      working-directory: STAT-server
     steps:
     - name: "Change directory"
       run:
