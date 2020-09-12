@@ -7,11 +7,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: "Server start"
-        run:
-          - cd STAT-server
-          - npm install nodemon
-          - nodemon
-        env:
+      - name: "Install nodemon"
+          run:
+            npm install nodemon
+      - name: "Change directory"
+          run:
+            cd STAT-server
+      - name: "Start server"
+          run:
+            nodemon
+          env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
