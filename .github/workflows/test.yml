@@ -13,7 +13,6 @@ jobs:
       - name: "Server start"
         run:
           npm install nodemon
-        run:
           nodemon
         env:
         MONGODB_URI: ${{ secrets.MONGODB_URI }}
