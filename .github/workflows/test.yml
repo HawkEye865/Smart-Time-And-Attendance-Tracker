@@ -10,11 +10,6 @@ jobs:
       run:
         working-directory: STAT-server
     steps:
-      - uses:
-          actions/checkout@v2
-          actions/setup-node@v1
-        with:
-          node-version: 12.x
       - name: "Server start"
         run:
           npm install
