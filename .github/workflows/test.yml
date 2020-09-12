@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: "Change directory"
       run:
-        cd STAT-server
+        cd
     - name: "Start server"
       run: nodemon
       env:
