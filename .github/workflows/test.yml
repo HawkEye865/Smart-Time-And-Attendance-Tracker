@@ -13,13 +13,13 @@ jobs:
       - uses:
           actions/checkout@v2
           actions/setup-node@v1
-      - name: "Server start"
         with:
           node-version: 12.x
-        env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          JWT_SECRET: ${{ secrets.JWT_SECRETS }}
+      - name: "Server start"
         run:
           npm install
           npm install nodemon
           nodemon
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          JWT_SECRET: ${{ secrets.JWT_SECRETS }}
