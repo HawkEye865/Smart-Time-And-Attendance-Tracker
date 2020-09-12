@@ -14,7 +14,9 @@ jobs:
       with:
         node-version: 10.x
     - name: "Install nodemon"
-      run: npm install nodemon
+      run:
+        npm install
+        npm install nodemon
     - name: "Start server"
       run: nodemon
       env:
