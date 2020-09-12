@@ -7,7 +7,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     defaults:
-      working-directory: ./STAT-server
+      run:
+        working-directory: ./STAT-server
     steps:
     - name: "Change directory"
       run: npm install nodemon
