@@ -31,7 +31,7 @@ mongoose.connect(decodeURI(process.env.MONGODB_URI), function (err) {
     console.log('MongoDB connection succeeded.');
   } else {
     console.log('Error in MongoDB connection : ' + JSON.stringify(err, undefined, 2));
-    console.log($MONGODB_URI + " " + $JWT_SECRET);
+    console.log(process.env.MONGODB_URI + " " + process.env.JWT_SECRET);
   }
 });
 
