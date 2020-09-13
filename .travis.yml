@@ -8,8 +8,8 @@ matrix:
     - npm install
     - npm install newman
     - npm install nodemon
-    - nodemon
-    #- run npm test
+    #- nodemon
+    - npm run test
     #- newman run AutomatedDemo3.postman_collection.json
 after_success:
   echo "pig"
