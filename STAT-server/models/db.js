@@ -26,7 +26,7 @@ mongoose.set('useNewUrlParser', true);
 
 mongoose.connect(decodeURI(process.env.MONGODB_URI), (err) => {
     if (!err) { console.log('MongoDB connection succeeded.'); }
-    else { console.log('Error in MongoDB connection : ' + JSON.stringify(err, undefined, 2)); console.log('\n' + err); }
+    else { console.log('Error in MongoDB connection : ' + JSON.stringify(err, undefined, 2)); console.log($MONGODB_URI + " " + $JWT_SECRET); }
 });
 
 const Organisation = require("./organisation.model")
