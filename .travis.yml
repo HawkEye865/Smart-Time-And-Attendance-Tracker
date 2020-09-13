@@ -8,7 +8,8 @@ matrix:
     - npm install
     - npm install newman
     - npm install nodemon
-    - console.log($MONGODB_URI + " " + $JWT_SECRET)
+    - echo $MONGODB_URI
+    - echo $JWT_SECRET
     - nodemon
     - newman run AutomatedDemo3.postman_collection.json
 env:
