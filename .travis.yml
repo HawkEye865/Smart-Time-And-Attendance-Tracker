@@ -6,7 +6,6 @@ matrix:
     script:
     - cd STAT-server
     - npm install
-    - nodemon
     - npm test
   branches:
     only:
