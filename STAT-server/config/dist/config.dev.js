@@ -1,3 +1,5 @@
+"use strict";
+
 /**
   * @file STAT-server/config/config.js
   * @author Vedha Krishna Velthapu, Jana Sander, Jesse Mwiti
@@ -19,11 +21,13 @@
 * Description:          This file handles the processing of the environment variables.
 *
 */
-
 // check env.
-var env = process.env.NODE_ENV || 'development';
-// fetch env. config
+var env = process.env.NODE_ENV || 'development'; // fetch env. config
+
 var config = require('./config.json');
-var envConfig = config[env];
-// add env. config values to process.env
-Object.keys(envConfig).forEach(key => process.env[key] = envConfig[key]);
+
+var envConfig = config[env]; // add env. config values to process.env
+
+Object.keys(envConfig).forEach(function (key) {
+  return process.env[key] = envConfig[key];
+});

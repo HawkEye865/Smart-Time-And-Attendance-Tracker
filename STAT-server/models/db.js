@@ -24,9 +24,11 @@ const mongoose = require('mongoose');
 require("../config/config.js");
 mongoose.set('useNewUrlParser', true);
 
-mongoose.connect(decodeURI(process.env.MONGODB_URI), (err) => {
-    if (!err) { console.log('MongoDB connection succeeded.'); }
-    else { console.log('Error in MongoDB connection : ' + JSON.stringify(err, undefined, 2)); console.log(process.env.MONGODB_URI + " " + process.env.JWT_SECRET); }
+mongoose.connect(decodeURIComponent(process.env.MONGODB_URI), (err) => {
+    if (!err) { console.log('MongoDB connection succeeded.');
+  }
+    else { console.log('Error in MongoDB connection : ' + JSON.stringify(err, undefined, 2));
+  }
 });
 
 const Organisation = require("./organisation.model")
