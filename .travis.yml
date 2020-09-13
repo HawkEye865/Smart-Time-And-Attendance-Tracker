@@ -6,10 +6,7 @@ matrix:
     script:
     - cd STAT-server
     - npm install
-    - npm install newman
-    - npm install nodemon
+    - ng test --headless
+    #- npm install nodemon
     #- nodemon
-    - npm test
-    #- newman run AutomatedDemo3.postman_collection.json
-after_success:
-  echo "pig"
+    #- npm test
