@@ -6,7 +6,9 @@ matrix:
     script:
     - cd STAT-server
     - npm install
-    - ng test --headless
-    #- npm install nodemon
-    #- nodemon
-    #- npm test
+    - nodemon
+    - npm test
+  branches:
+    only:
+      - master
+      - /^(?i:server)-.*$/
