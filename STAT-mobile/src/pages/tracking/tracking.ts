@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { User } from '../../providers';
 
 /**
  * Generated class for the TrackingPage page.
@@ -15,11 +16,119 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TrackingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public user : User) {
   }
 
+  entries : Object[]
+  week : Object[] = []
+  date : Date = new Date()
+  date1 : Date = new Date()
+  date2 : Date = new Date()
+  date3 : Date = new Date()
+  date4 : Date = new Date()
+  date5 : Date = new Date()
+
+  activityVal : number = 0
+  entriesVal : number = 0
+  tasksVal : any = []
+
+  // edit entry
+  editing : boolean = false
+  editingTime : any = 0
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TrackingPage');
+    this.date1.setDate(this.date.getDate()-1)
+    this.date2.setDate(this.date.getDate()-2)
+    this.date3.setDate(this.date.getDate()-3)
+    this.date4.setDate(this.date.getDate()-4)
+    this.date5.setDate(this.date.getDate()-5)
+
+    // get entries
+    this.getEntries(this.formatDate(this.date))
+    this.getEntries(this.formatDate(this.date1))
+    this.getEntries(this.formatDate(this.date2))
+    this.getEntries(this.formatDate(this.date3))
+    this.getEntries(this.formatDate(this.date4))
+    this.getEntries(this.formatDate(this.date5))
+  }
+
+    // get tracking entries
+    getEntries(date : String) {
+      this.user.getTimeEntries(date, localStorage.getItem('token')).subscribe((data) => {
+        console.log(data)
+  
+        // values on dashboard
+        if (this.editing == false) {
+          this.entriesVal += data['timeEntries'].length
+        } else {
+          this.activityVal -= - this.editingTime
+        }
+  
+        data['timeEntries'].forEach(element => {
+          if (element.taskID != null && !this.tasksVal.includes(element.taskID)) {
+            this.tasksVal.push(element.taskID)
+          }
+  
+          if (this.editing == false)
+            this.activityVal += element.activeTime
+        });
+  
+        if (date == this.formatDate(this.date))
+          this.week['today'] = data['timeEntries'].sort((a : any ,b : any) =>
+            b.endTime - a.endTime
+        );
+        if (date == this.formatDate(this.date1))
+          this.week['yesterday'] = data['timeEntries'].sort((a : any ,b : any) =>
+          b.endTime - a.endTime
+        );
+        if (date == this.formatDate(this.date2))
+          this.week['2days'] = data['timeEntries'].sort((a : any ,b : any) =>
+          b.endTime - a.endTime
+        );
+        if (date == this.formatDate(this.date3))
+          this.week['3days'] = data['timeEntries'].sort((a : any ,b : any) =>
+          b.endTime - a.endTime
+        );
+        if (date == this.formatDate(this.date4))
+          this.week['4days'] = data['timeEntries'].sort((a : any ,b : any) =>
+          b.endTime - a.endTime
+        );
+        if (date == this.formatDate(this.date5))
+          this.week['5days'] = data['timeEntries'].sort((a : any ,b : any) =>
+          b.endTime - a.endTime
+        );
+      },
+      error => {
+        //console.log(error);
+        let errorCode = error['status'];
+        if (errorCode == '403')
+        {
+          //console.log("Your session has expired. Please sign in again.");
+          // kick user out
+          //this.headerService.kickOut();
+        }
+      });
+    }
+
+    // format date
+  formatDate(date : Date) {
+    var y = date.getFullYear().toString();
+    var m = (date.getMonth()+1).toString();
+    var d = date.getDate().toString();
+
+    let toReturn = new String(y + '/');
+
+    if (m.length == 1)
+      toReturn += ('0' + m + '/')
+    else
+      toReturn += (m + '/')
+
+    if (d.length == 1)
+      toReturn += ('0' + d)
+    else
+      toReturn += (d)
+
+    return toReturn
   }
 
 }
