@@ -46,7 +46,8 @@ export class MyApp {
     { title: 'Home', component: 'HomePage' },
     { title: 'Tracking', component: 'TrackingPage' },
     { title: 'Calendar', component: 'CalendarPage' },
-    { title: 'Analysis', component: 'AnalysisPage' }
+    { title: 'Analysis', component: 'AnalysisPage' },
+    { title: 'Entries', component: 'EntriesPage' }
   ]
 
   constructor(private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {

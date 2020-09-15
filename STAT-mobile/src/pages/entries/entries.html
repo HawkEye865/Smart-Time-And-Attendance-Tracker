@@ -1,0 +1,44 @@
+<!--
+  Generated template for the EntriesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Entries</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      <span class="date">{{formatWeekDate(date)}}</span>
+      <small>{{days}}</small>
+      <span *ngIf="data.length == 0" class="tag numEntries">0 entries</span>
+      <span *ngIf="data.length > 0" class="tag numEntries">{{data.length}} entries</span>
+    </ion-list-header>
+    <ion-item *ngIf="data.length == 0" class="entries">
+        <i>No tracking entries</i>
+    </ion-item>
+    <ion-item-sliding *ngFor="let e of data">
+      <ion-item>
+        <h2>{{e.project}}
+          <span class="tag">{{e.task}}</span>
+        </h2>
+        <p>{{e.description}}</p>
+        <p item-end>{{getTime(e.activeTime)}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary">
+          <ion-icon name="md-create"></ion-icon>
+          Edit
+        </button>
+        <button ion-button color="danger">
+          <ion-icon name="md-trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

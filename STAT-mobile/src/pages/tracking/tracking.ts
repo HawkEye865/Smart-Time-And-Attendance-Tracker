@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../providers';
+import { EntriesPage } from '../entries/entries';
 
 /**
  * Generated class for the TrackingPage page.
@@ -12,7 +13,7 @@ import { User } from '../../providers';
 @IonicPage()
 @Component({
   selector: 'page-tracking',
-  templateUrl: 'tracking.html',
+  templateUrl: 'tracking.html'
 })
 export class TrackingPage {
 
@@ -54,6 +55,13 @@ export class TrackingPage {
 
     // get tracking entries
     getEntries(date : String) {
+      this.week['today'] = []
+      this.week['yesterday'] = []
+      this.week['2days'] = []
+      this.week['3days'] = []
+      this.week['4days'] = []
+      this.week['5days'] = []
+
       this.user.getTimeEntries(date, localStorage.getItem('token')).subscribe((data) => {
         console.log(data)
   
@@ -97,6 +105,8 @@ export class TrackingPage {
           this.week['5days'] = data['timeEntries'].sort((a : any ,b : any) =>
           b.endTime - a.endTime
         );
+
+        console.log(this.week)
       },
       error => {
         //console.log(error);
@@ -109,6 +119,14 @@ export class TrackingPage {
         }
       });
     }
+
+  showEntries(event, date, days, data) {
+    this.navCtrl.push(EntriesPage, {
+      'date': date,
+      'days': days,
+      'data': data
+    })
+  }
 
     // format date
   formatDate(date : Date) {
@@ -129,6 +147,22 @@ export class TrackingPage {
       toReturn += (d)
 
     return toReturn
+  }
+
+  // get correct date format
+  formatWeekDate(d : Date) {
+    const options = {
+      month:"long",
+      day:"2-digit"
+    }
+    return new Date(d).toLocaleDateString('en-US', options)
+  }
+
+  // get time spent
+  getTime(mins : number) {
+    var hours = Math.floor(mins / 60)
+    var rem = mins % 60
+    return (hours + 'h ' + rem + 'm')
   }
 
 }

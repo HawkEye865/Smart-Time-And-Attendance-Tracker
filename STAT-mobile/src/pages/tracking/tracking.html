@@ -11,5 +11,44 @@
 </ion-header>
 
 <ion-content padding>
-  HI
+
+  <ion-card>
+    <ion-card-header>
+      My Weekly Entries
+    </ion-card-header>
+  
+    <ion-list>
+      <button ion-item (click)="showEntries($event, date, 'today', week['today'])">
+        <span>{{formatWeekDate(date)}}</span>
+        <small>today</small>
+      </button>
+  
+      <button ion-item (click)="showEntries($event, date1, 'yesterday', week['yesterday'])">
+        <span>{{formatWeekDate(date1)}}</span>
+        <small>yesterday</small>
+      </button>
+  
+      <button ion-item (click)="showEntries($event, date2, '2 days ago', week['2days'])">
+        <span>{{formatWeekDate(date2)}}</span>
+        <small>2 days ago</small>
+      </button>
+  
+      <button ion-item (click)="showEntries($event, date3, '3 days ago', week['3days'])">
+        <span>{{formatWeekDate(date3)}}</span>
+        <small>3 days ago</small>
+      </button>
+  
+      <button ion-item  (click)="showEntries($event, date4, '4 days ago', week['4days'])">
+        <span>{{formatWeekDate(date4)}}</span>
+        <small>4 days ago</small>
+      </button>
+  
+      <button ion-item (click)="showEntries($event, date5, '5 days ago', week['5days'])">
+        <span>{{formatWeekDate(date5)}}</span>
+        <small>5 days ago</small>
+      </button>
+  
+    </ion-list>
+  </ion-card>
+
 </ion-content>

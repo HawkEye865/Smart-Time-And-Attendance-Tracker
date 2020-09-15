@@ -1,0 +1,30 @@
+page-entries {
+    .tag {
+        background-color: #4c585b50;
+        padding: 0.2em 0.5em;
+        border-radius: 0.8em;
+        color: #f2f3f7;
+        font-size: 0.65em;
+    }
+
+    .date {
+        font-weight: bolder;
+        font-size: medium;
+    }
+
+    small {
+        margin-left: 0.5em;
+    }
+
+    .numEntries {
+        font-size: 1em;
+        float: right;
+        background-color: #00c8ff40;
+        color: #00c8ff;
+    }
+
+    ion-list-header {
+        display: flex;
+        align-items: center;
+    }
+}
