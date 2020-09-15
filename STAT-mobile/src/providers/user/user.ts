@@ -63,4 +63,52 @@ export class User {
         headers: headers
       });
     }
+
+
+    // ANALYSIS
+
+    //Get user's daily totals for the last week
+    public getDailyValues(key){
+      const headers = new HttpHeaders()
+            .set('Content-Type', 'application/json').set( 'Authorization', "Bearer "+key);
+      return this.http.get(this.ROOT_URL+ 'userTimeEntry/getUserDailyTotalTime', {
+        headers: headers
+      });
+    }
+
+    //Get user's daily monetary value totals for the last week
+  public getDailyMoney(key){
+    const headers = new HttpHeaders()
+          .set('Content-Type', 'application/json').set( 'Authorization', "Bearer "+key);
+    return this.http.get(this.ROOT_URL+ 'userTimeEntry/getUserDailyTotalMoney', {
+      headers: headers
+    });
+  }
+
+  //Get user's time for each project for the last week
+  public getWeeklyProjectsTimes(key){
+    const headers = new HttpHeaders()
+          .set('Content-Type', 'application/json').set( 'Authorization', "Bearer "+key);
+    return this.http.get(this.ROOT_URL+ 'userTimeEntry/getUserWeeklyTimeForProjects', {
+      headers: headers
+    });
+  }
+
+  //Get user's time for each task for the last week
+  public getWeeklyTasksTimes(key){
+    const headers = new HttpHeaders()
+          .set('Content-Type', 'application/json').set( 'Authorization', "Bearer "+key);
+    return this.http.get(this.ROOT_URL+ 'userTimeEntry/getUserWeeklyTimeForTasks', {
+      headers: headers
+    });
+  }
+
+  //Get devices user used for the last week
+  public getDevices(key){
+    const headers = new HttpHeaders()
+          .set('Content-Type', 'application/json').set( 'Authorization', "Bearer "+key);
+    return this.http.get(this.ROOT_URL+ 'userTimeEntry/getUserDevices', {
+      headers: headers
+    });
+  }
 }
