@@ -11,6 +11,34 @@
 </ion-header>
 
 <ion-content padding>
+
+  <div class="col-12">
+    <ion-card id="projects" class="info col-6">
+      <div class="card-title">{{numProjects}}</div>
+      <div class="card-subtitle">PROJECTS</div>
+    </ion-card>
+    <ion-card id="tasks" class="info col-6">
+      <div class="card-title">{{numTasks}}</div>
+      <div class="card-subtitle">TASKS</div>
+    </ion-card>
+    <ion-card id="overdue" class="info">
+      <div class="card-title">{{numOverdue}}</div>
+      <div class="card-subtitle">OVERDUE</div>
+    </ion-card>
+    <ion-card id="entries" class="info">
+      <div class="card-title">{{numEntries}}</div>
+      <div class="card-subtitle">ENTRIES</div>
+    </ion-card>
+    <ion-card id="hours" class="info">
+      <div class="card-title">{{numWorked}}</div>
+      <div class="card-subtitle">WORKED</div>
+    </ion-card>
+    <ion-card id="money" class="info">
+      <div class="card-title">{{numEarned}}</div>
+      <div class="card-subtitle">EARNED</div>
+    </ion-card>
+  </div>
+
   <canvas id="dailyChart">
     {{dailyChart}}</canvas>
 

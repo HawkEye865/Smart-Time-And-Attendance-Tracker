@@ -40,6 +40,7 @@ export class AnalysisPage {
   numWorked : any = '-'
   numEarned : any = '-'
   numUnder = 0
+  numEntries = 0
 
   // performance - daily number of hours
   dailyValues : any[] = [0, 0, 0, 0, 0, 0, 0]
@@ -118,13 +119,14 @@ export class AnalysisPage {
     this.numWorked = '-'
     this.numEarned = '-'
     this.numUnder = 0
+    this.numEntries = 0
   }
 
   //Get user's daily totals for the last week
   getDailyValues()
   {
     this.user.getDailyValues(localStorage.getItem('token')).subscribe((data) => {
-      //console.log(data);
+      console.log(data);
       let daily = data['totalDailyValues']
       daily.forEach((element : any) => {
         if (element['_id'] == this.dates[0]) {
@@ -154,6 +156,8 @@ export class AnalysisPage {
         if (element['_id'] == this.dates[6]) {
           this.dailyValues[6] = element['totalTime']
         }
+
+        this.numEntries += element['count']
       });
       //console.log(this.dailyValues)
 

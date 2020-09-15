@@ -1,3 +1,48 @@
 page-analysis {
+    .info {
+        color: white;
+        text-align: center;
+        display: inline-block;
+        width: 31%;
+        margin: 0.3em 0 0.3em 0.3em;
+        padding: 0.8em 0;
+    
+      .card-title {
+        top: 36%;
+        font-size: 1em;
+        font-weight: bold;
+        color: #fff;
+      }
+    
+      .card-subtitle {
+        font-size: 0.7em;
+        top: 52%;
+        color: #fff;
+      }
+    }
 
+    #projects {
+        background-color: #8368fc;
+    }
+
+    #tasks {
+        background-color: #39c0ff;
+    }
+
+    #overdue {
+        background-color: #ff444e;
+    }
+
+    #entries {
+        background-color: #ff2885;
+    }
+
+    #hours {
+        background-color: #366ceb;
+    }
+
+    #money {
+        background-color: #17e883;
+    }
+    
 }
