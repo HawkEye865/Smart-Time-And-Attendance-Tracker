@@ -1,9 +1,19 @@
 page-analysis {
+
+    ion-scroll {
+        white-space: nowrap;
+        height: 100px;
+    }
+
+    .scroll-content {
+        padding-left: 8px !important;
+    }
+
     .info {
         color: white;
         text-align: center;
         display: inline-block;
-        width: 31%;
+        width: 28%;
         margin: 0.3em 0 0.3em 0.3em;
         padding: 0.8em 0;
     
@@ -22,6 +32,7 @@ page-analysis {
     }
 
     #projects {
+        margin-left: 0 !important;
         background-color: #8368fc;
     }
 
@@ -43,6 +54,12 @@ page-analysis {
 
     #money {
         background-color: #17e883;
+    }
+
+    span {
+        text-transform: uppercase;
+        font-size: small;
+        color: #4c585b;
     }
     
 }

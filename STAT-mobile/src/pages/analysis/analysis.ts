@@ -20,6 +20,8 @@ export class AnalysisPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public user : User) {
   }
 
+  data = 'week'
+
   date : Date = new Date()
   date1 : Date = new Date()
   date2 : Date = new Date()

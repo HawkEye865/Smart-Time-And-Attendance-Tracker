@@ -12,7 +12,7 @@
 
 <ion-content padding>
 
-  <div class="col-12">
+  <ion-scroll scrollX="true">
     <ion-card id="projects" class="info col-6">
       <div class="card-title">{{numProjects}}</div>
       <div class="card-subtitle">PROJECTS</div>
@@ -37,26 +37,82 @@
       <div class="card-title">{{numEarned}}</div>
       <div class="card-subtitle">EARNED</div>
     </ion-card>
+  </ion-scroll>
+
+  <div padding>
+    <ion-segment [(ngModel)]="data">
+      <ion-segment-button value="week" (click)="reset()">
+        This Week
+      </ion-segment-button>
+      <ion-segment-button value="pros" (click)="reset()">
+        Projects & Tasks
+      </ion-segment-button>
+    </ion-segment>
   </div>
+  
+  <div [ngSwitch]="data">
+    <ion-list *ngSwitchCase="'week'">
+      <ion-item>
+        <span>
+          Performance (daily number of hours)
+        </span>
+        <ion-card padding>
+          <canvas id="dailyChart">{{dailyChart}}</canvas>
+        </ion-card>
+      </ion-item>
+      
+      <ion-item>
+          <span>
+            Projects (hours for the week)
+          </span>
+        <ion-card padding>
+          <canvas id="projectTimesChart">{{projectTimesChart}}</canvas>
+        </ion-card>
+      </ion-item>
 
-  <canvas id="dailyChart">
-    {{dailyChart}}</canvas>
+      <ion-item>
+          <span>
+            Earnings (in Rands)
+          </span>
+        <ion-card padding>
+          <canvas id="monetaryChart">{{monetaryChart}}</canvas>
+        </ion-card>
+      </ion-item>
 
-    <canvas id="monetaryChart">
-      {{monetaryChart}}</canvas>
+      <ion-item>
+        <span>
+          Devices (most used devices)
+        </span>
+        <ion-card padding>
+          <canvas id="devicesChart">{{devicesChart}}</canvas>
+        </ion-card>       
+      </ion-item> 
+    </ion-list>
+  
+    <ion-list *ngSwitchCase="'pros'">
+      <ion-item>
+          <span>
+            Projects Breakdown
+          </span>
+        <ion-card padding>
+          <canvas id="projectsBDChart">{{projectsBDChart}}</canvas>
+        </ion-card>       
+      </ion-item>
 
-      <canvas id="devicesChart">
-        {{devicesChart}}</canvas>
+      <ion-item>
+          <span>
+            Tasks Breakdown
+          </span>
+        <ion-card padding>
+          <canvas id="tasksBDChart">{{tasksBDChart}}</canvas>
+        </ion-card>       
+      </ion-item>
 
-        <canvas id="projectTimesChart">
-          {{projectTimesChart}}</canvas>
-
-          <canvas id="projectsBDChart">
-            {{projectsBDChart}}</canvas>
-
-            <canvas id="tasksBDChart">
-              {{tasksBDChart}}</canvas>
-
+      <ion-item>
+          <span>
+            Projects and Tasks
+          </span>
+        <ion-card padding>
           <div *ngFor="let p of progress">
             <h3>{{p.projectName}}</h3>
             <div class="progress">
@@ -67,5 +123,10 @@
                 </div>
             </div>
             <br>
-        </div>
+          </div>
+        </ion-card>       
+      </ion-item>
+    </ion-list>
+  </div>
+
 </ion-content>
