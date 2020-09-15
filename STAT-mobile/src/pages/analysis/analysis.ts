@@ -107,7 +107,7 @@ export class AnalysisPage {
     this.getDailyValues();
     this.getDailyMoney();
     this.getDevices();
-    //this.getWeeklyProjectsTimes();
+    this.getWeeklyProjectsTimes();
     //this.getWeeklyTasksTimes();
     //this.getProAndTasks()        
   
@@ -329,6 +329,75 @@ export class AnalysisPage {
       }
     });
   }
+
+  //Get user's time for each project for the last week
+  getWeeklyProjectsTimes()
+  {
+    this.user.getWeeklyProjectsTimes(localStorage.getItem('token')).subscribe((data) => {
+      //console.log(data);
+
+      this.projectTimes = data['totalProjectsTimes']
+      this.numProjects = this.projectTimes.length
+      this.projectTimes.forEach((element : any) => {
+        if (element._id == 'Unspecified')
+          --this.numProjects
+      });
+
+      let colors = []
+      let borders = []
+      let count = 0
+      for (let i = 0; i < this.projectTimes.length; i++) {
+        if (this.projectTimes[i].totalTime == 0) {
+          colors.push('#000000')
+          borders.push('#000000')
+        } else {
+          colors.push(this.barChartColors[count % this.barChartColors.length])
+          borders.push(this.borderColors[count % this.borderColors.length])
+          count++
+        }
+      }
+
+      // create chart
+      this.projectTimesChart = new Chart(
+        'projectTimesChart', {
+          type: 'bar',
+          data: { 
+            datasets: [{
+              data: this.projectTimes.map(t => Math.round(( (t.totalTime / 60) + Number.EPSILON) * 100) / 100),
+              backgroundColor: colors,
+              borderWidth: 1,
+              borderColor : borders
+            }],
+            labels: this.projectTimes.map(t => t._id)
+          },
+          options: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      )      
+
+      // task percentage
+      if (this.tasksTimes) {
+        this.tasksTimes.forEach((t : any) => {
+            let pIndex = this.projectTimes.findIndex((a : any) => a.projectID === t.projectID)
+            let projectTotal = this.projectTimes[pIndex].totalTime
+            t.percentage = t.totalTime / projectTotal * 100  
+            //console.log(t)
+        });
+      }
+    },
+    error => {
+      console.log(error);
+      let errorCode = error['status'];
+      if (errorCode == '403')
+      {
+        //this.headerService.kickOut();
+      }
+    });
+  }
+
 
 
   // get time spent
