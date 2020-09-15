@@ -13,7 +13,7 @@ describe('HeaderComponent', () => {
   
   beforeEach((async () => {
     TestBed.configureTestingModule({
-      providers: [ NO_ERRORS_SCHEMA ],
+      schemas: [ NO_ERRORS_SCHEMA ],
       declarations: [ HeaderComponent ],
       imports:
       [RouterTestingModule],
@@ -42,7 +42,7 @@ describe('Integration Tests:', () => {
   
     beforeEach((async () => {
       TestBed.configureTestingModule({
-        providers: [ NO_ERRORS_SCHEMA ],
+        schemas: [ NO_ERRORS_SCHEMA ],
         declarations: [ HeaderComponent ],
         imports:
         [RouterTestingModule],

@@ -10,7 +10,8 @@ describe('ProjectManagementService', () => {
   let ROOT_URL = "http://localhost:3000/api/";
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ProjectManagementService, NO_ERRORS_SCHEMA],
+      schemas: [ NO_ERRORS_SCHEMA ],
+      providers: [ProjectManagementService],
       imports: [HttpClientTestingModule],
     });
     service = TestBed.inject(ProjectManagementService);

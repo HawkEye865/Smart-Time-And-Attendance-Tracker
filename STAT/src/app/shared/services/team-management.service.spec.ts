@@ -14,7 +14,8 @@ describe('Unit tests:', () => {
     let ROOT_URL = "http://localhost:3000/api/";
     beforeEach(async() => {
       TestBed.configureTestingModule({
-        providers: [TeamManagementService, NO_ERRORS_SCHEMA],
+        schemas: [ NO_ERRORS_SCHEMA ],
+        providers: [TeamManagementService],
         imports: [HttpClientTestingModule],
       });
       service = TestBed.inject(TeamManagementService);

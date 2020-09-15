@@ -12,9 +12,9 @@ describe('HeaderService', () => {
   let router: Router;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas: [ NO_ERRORS_SCHEMA ],
       providers: [ RouterTestingModule,
-        {provide: Router, useValue: {navigate: () => {}}},
-        NO_ERRORS_SCHEMA],
+        {provide: Router, useValue: {navigate: () => {}}}],
       imports: [RouterTestingModule]
     });
     

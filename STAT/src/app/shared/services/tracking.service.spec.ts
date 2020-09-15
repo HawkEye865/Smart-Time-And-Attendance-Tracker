@@ -12,7 +12,8 @@ describe('TrackingService', () => {
   let ROOT_URL = "http://localhost:3000/api/";
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TrackingService, NO_ERRORS_SCHEMA],
+      schemas: [ NO_ERRORS_SCHEMA ],
+      providers: [TrackingService],
       imports: [HttpClientTestingModule],
     });
     service = TestBed.inject(TrackingService);

@@ -12,7 +12,8 @@ describe('HistoryService:', () => {
     let ROOT_URL = "http://localhost:3000/api/";
     beforeEach(async() => {
       TestBed.configureTestingModule({
-        providers: [HistoryService, NO_ERRORS_SCHEMA],
+        schemas: [ NO_ERRORS_SCHEMA ],
+        providers: [HistoryService],
         imports: [HttpClientTestingModule],
       });
       service = TestBed.inject(HistoryService);

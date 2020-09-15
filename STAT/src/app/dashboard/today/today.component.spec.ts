@@ -26,6 +26,7 @@ describe('TodayComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas: [ NO_ERRORS_SCHEMA ],
       declarations: [ TodayComponent ],
       imports:
         [ HttpClientTestingModule,
@@ -40,8 +41,7 @@ describe('TodayComponent', () => {
         MaterialComponentsModule,
         MaterialComponentsModule,
         MatProgressSpinnerModule,
-        BrowserAnimationsModule,
-        NO_ERRORS_SCHEMA
+        BrowserAnimationsModule
       ]
     })
     .compileComponents().then(()=>

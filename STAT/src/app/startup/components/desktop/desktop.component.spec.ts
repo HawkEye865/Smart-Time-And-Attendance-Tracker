@@ -10,7 +10,7 @@ describe('DesktopComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [ NO_ERRORS_SCHEMA ],
+      schemas: [ NO_ERRORS_SCHEMA ],
       declarations: [ DesktopComponent ]
     })
     .compileComponents();

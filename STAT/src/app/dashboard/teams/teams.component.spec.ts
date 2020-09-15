@@ -18,7 +18,7 @@ describe('TeamsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [ NO_ERRORS_SCHEMA ],
+      schemas: [ NO_ERRORS_SCHEMA ],
       declarations: [ TeamsComponent ],
       imports:
         [ HttpClientTestingModule,

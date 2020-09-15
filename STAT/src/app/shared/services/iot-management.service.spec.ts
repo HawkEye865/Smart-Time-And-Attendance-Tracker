@@ -12,7 +12,8 @@ describe('IotManagementService:', () => {
     let ROOT_URL = "http://localhost:3000/api/";
     beforeEach(async() => {
       TestBed.configureTestingModule({
-        providers: [IotManagementService, NO_ERRORS_SCHEMA],
+        schemas: [ NO_ERRORS_SCHEMA ],
+        providers: [IotManagementService],
         imports: [HttpClientTestingModule]
       });
       service = TestBed.inject(IotManagementService);

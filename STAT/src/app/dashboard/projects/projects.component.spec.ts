@@ -25,7 +25,7 @@ describe('Unit tests:', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [ NO_ERRORS_SCHEMA ],
+      schemas: [ NO_ERRORS_SCHEMA ],
       declarations: [ ProjectsComponent ],
       imports:
         [ HttpClientTestingModule,
@@ -117,6 +117,7 @@ describe('ProjectsComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
+        schemas: [ NO_ERRORS_SCHEMA ],
         declarations: [ ProjectsComponent ],
         imports:
           [ HttpClientTestingModule,
@@ -132,8 +133,7 @@ describe('ProjectsComponent', () => {
           ReactiveFormsModule,
           MaterialComponentsModule,
           MatProgressSpinnerModule,
-          BrowserAnimationsModule,
-          NO_ERRORS_SCHEMA
+          BrowserAnimationsModule          
         ]
       })
       .compileComponents().then(()=>

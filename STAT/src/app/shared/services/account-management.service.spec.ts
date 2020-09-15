@@ -11,8 +11,9 @@ describe('Unit tests:', () => {
     let ROOT_URL = "http://localhost:3000/api/";
     beforeEach(async() => {
       TestBed.configureTestingModule({
-        providers: [AccountManagementService, NO_ERRORS_SCHEMA]
-        imports: [HttpClientTestingModule],
+        schemas: [ NO_ERRORS_SCHEMA ],
+        providers: [AccountManagementService],
+        imports: [HttpClientTestingModule]
       });
       service = TestBed.inject(AccountManagementService);
       HttpMock =TestBed.inject(HttpTestingController);

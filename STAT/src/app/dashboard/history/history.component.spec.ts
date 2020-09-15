@@ -21,7 +21,7 @@ describe('Unit tests', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        providers: [ NO_ERRORS_SCHEMA ],
+        schemas: [ NO_ERRORS_SCHEMA ],
         declarations: [ HistoryComponent ],
         imports:
           [ HttpClientTestingModule,

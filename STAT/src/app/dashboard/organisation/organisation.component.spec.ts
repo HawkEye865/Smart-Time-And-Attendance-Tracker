@@ -19,6 +19,7 @@ describe('OrganisationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas: [ NO_ERRORS_SCHEMA ],
       declarations: [ OrganisationComponent ],
       imports:
         [ HttpClientTestingModule,
@@ -30,8 +31,7 @@ describe('OrganisationComponent', () => {
         providers: [
           MatMenuModule,
           MatIconModule,
-          MatCardModule,
-          NO_ERRORS_SCHEMA
+          MatCardModule
         ]
     })
     .compileComponents().then(()=>

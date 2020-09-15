@@ -9,7 +9,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [NO_ERRORS_SCHEMA],
+      schemas: [NO_ERRORS_SCHEMA],
       imports: [RouterTestingModule],
       declarations: [ HomeComponent ]
     })

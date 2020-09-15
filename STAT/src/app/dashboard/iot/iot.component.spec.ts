@@ -21,7 +21,7 @@ describe('Unit tests:', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        providers: [ NO_ERRORS_SCHEMA ],
+        schemas: [ NO_ERRORS_SCHEMA ],
         declarations: [ IOTComponent ],
         imports:
         [
@@ -129,6 +129,7 @@ describe('Integration tests:', () => {
   
       beforeEach(async(() => {
         TestBed.configureTestingModule({
+          schemas: [ NO_ERRORS_SCHEMA ],
           declarations: [ IOTComponent ],
           imports:
           [
@@ -148,8 +149,7 @@ describe('Integration tests:', () => {
             deregisterDevice: () => {}
           }},
           {provide: HeaderService, useValue: {
-            kickOut: () => {}}},
-            NO_ERRORS_SCHEMA
+            kickOut: () => {}}}
          ]
         })
         .compileComponents().then(()=>

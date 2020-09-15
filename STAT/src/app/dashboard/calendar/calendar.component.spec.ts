@@ -12,7 +12,7 @@ describe('CalendarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [ NO_ERRORS_SCHEMA ],
+      schemas: [ NO_ERRORS_SCHEMA ],
       declarations: [ CalendarComponent ],
       imports:
           [ RouterTestingModule, HttpClientTestingModule]

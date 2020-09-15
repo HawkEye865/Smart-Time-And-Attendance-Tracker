@@ -16,7 +16,7 @@ describe('UnauthorisedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [ NO_ERRORS_SCHEMA ],
+      schemas: [ NO_ERRORS_SCHEMA ],
       declarations: [ UnauthorisedComponent ],
       imports:
           [ RouterTestingModule,HttpClientTestingModule]
@@ -45,12 +45,12 @@ describe('Integration Tests:', () => {
   
     beforeEach(async(() => {
       TestBed.configureTestingModule({
+        schemas: [ NO_ERRORS_SCHEMA ],
         providers: [
           {provide: Router, useValue: {navigate: () => {}}},
           {provide: AccountManagementService, useValue: {
             isAuthenticated: () => {}
-          }},
-          NO_ERRORS_SCHEMA
+          }}
         ],
         declarations: [ UnauthorisedComponent ],
         imports:
