@@ -108,8 +108,8 @@ export class AnalysisPage {
     this.getDailyMoney();
     this.getDevices();
     this.getWeeklyProjectsTimes();
-    //this.getWeeklyTasksTimes();
-    //this.getProAndTasks()        
+    this.getWeeklyTasksTimes();
+    this.getProAndTasks()        
   
     // reset variables
     this.numProjects = '-'
@@ -398,7 +398,166 @@ export class AnalysisPage {
     });
   }
 
+  //Get user's time for each task for the last week
+  getWeeklyTasksTimes()
+  {
+    this.user.getWeeklyTasksTimes(localStorage.getItem('token')).subscribe((data) => {
+      //console.log(data);
+      this.tasksTimes = data['totalTasksTimes']
+      this.numTasks = this.tasksTimes.length
+      this.tasksTimes.forEach((element : any) => {
+        if (element._id == 'Unspecified') {
+          --this.numTasks
+          this.tasksTimes.splice(this.tasksTimes.indexOf(element), 1)
+        }
+      });
+      
+      //console.log(this.tasksTimes)
 
+      this.progress = []
+      this.tasksTimes.forEach((element : any) => {
+        let index = this.progress.findIndex((a : any) => a.projectID === element.projectID)
+        if (index == -1) {
+          let temp = {'projectID' : element.projectID, 'projectName' : element.projectName, 'taskTimes' : [element]}
+          this.progress.push(temp)
+        } else {
+          this.progress[index].taskTimes.push(element)
+        }
+      });
+
+      this.progress.forEach((element : any) => {
+        element.totalTime = 0
+        element.taskTimes.forEach((t : any) => {
+          element.totalTime += t.totalTime
+        });
+      });
+
+      let count = 0
+      this.progress.forEach((element : any) => {
+        element.taskTimes.forEach((t : any) => {
+          t.percent = ((t.totalTime / element.totalTime) * 100) + '%'
+          t.color = this.progressColors[count % 12]
+          count++
+        });
+      });
+
+      //console.log(this.progress)
+
+
+    },
+    error => {
+      console.log(error);
+      let errorCode = error['status'];
+      if (errorCode == '403')
+      {
+        //this.headerService.kickOut();
+      }
+    });
+  }
+
+  // get projects and tasks
+  getProAndTasks()
+  {
+    this.user.getProjectsAndTasks(localStorage.getItem('token')).subscribe((data) => {
+      //console.log(data)
+      this.projects = data['projects']
+
+      let tempTasks = []
+      this.projectsBD = [0,0,0]
+      this.projects.forEach((element : any) => {
+        let due = Date.parse(element.dueDate.replace(/\-/g, '/'))
+        let today = this.date.getTime()
+        if (element.completed == false && due < today)
+          this.projectsBD[2]++
+        else if (element.completed == false)
+          this.projectsBD[0]++
+        else
+          this.projectsBD[1]++
+
+        element.tasks.forEach((t : any) => {
+          tempTasks.push(t)
+        });
+      });
+
+      //console.log(this.projectsBD)
+
+      // tasks breakdown
+      this.tasks = [0,0,0,0]
+      tempTasks.forEach((element : any) => {
+        let due = Date.parse(element.dueDate.replace(/\-/g, '/'))
+        let today = this.date.getTime()
+        if (element.taskStatus.toUpperCase() != 'COMPLETED' &&  due < today) // if overdue
+          this.tasks[3]++
+        else if (element.taskStatus == 'Not Started')
+          this.tasks[0]++
+        else if (element.taskStatus == 'In Progress')
+          this.tasks[1]++
+        else
+          this.tasks[2]++
+      });
+
+      this.numOverdue = this.tasks[3]
+
+      // create project chart
+      this.projectsBDChart = new Chart(
+        'projectsBDChart', {
+          type: 'pie',
+          data: { 
+            datasets: [{
+              data: this.projectsBD,
+              backgroundColor: [
+                '#39c0ff',
+                '#17e883',
+                '#ff444e'
+            ]
+            }],
+            labels: ['Upcoming', 'Completed', 'Overdue']
+          },
+          options: {
+            legend: {
+                position: 'right',
+                labels: {usePointStyle: true, fontSize: 15}
+            }
+          }
+        }
+      )
+
+      // create task chart
+      this.tasksBDChart = new Chart(
+        'tasksBDChart', {
+          type: 'pie',
+          data: { 
+            datasets: [{
+              data: this.tasks,
+              backgroundColor: [
+                '#ff2885',
+                '#39c0ff',
+                '#17e883',
+                '#ff444e'
+            ]
+            }],
+            labels: ['Not Started', 'In Progress', 'Completed', 'Overdue']
+          },
+          options: {
+            legend: {
+                position: 'right',
+                labels: {usePointStyle: true, fontSize: 15}
+            }
+          }
+        }
+      )
+
+    },
+    error => {
+      let errorCode = error['status'];
+      if (errorCode == '403')
+      {
+        //console.log("Your session has expired. Please sign in again.");
+        // kick user out
+        //this.headerService.kickOut();
+      }
+    });
+  }
 
   // get time spent
   getTime(mins : number) {

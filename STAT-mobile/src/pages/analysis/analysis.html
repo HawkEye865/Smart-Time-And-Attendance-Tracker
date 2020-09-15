@@ -22,4 +22,22 @@
 
         <canvas id="projectTimesChart">
           {{projectTimesChart}}</canvas>
+
+          <canvas id="projectsBDChart">
+            {{projectsBDChart}}</canvas>
+
+            <canvas id="tasksBDChart">
+              {{tasksBDChart}}</canvas>
+
+          <div *ngFor="let p of progress">
+            <h3>{{p.projectName}}</h3>
+            <div class="progress">
+                <div *ngFor="let t of p.taskTimes" class="progress-bar" role="progressbar" 
+                    [style.width]="t.percent"
+                    [style.background-color]="t.color">
+                    {{getTime(t.totalTime)}}
+                </div>
+            </div>
+            <br>
+        </div>
 </ion-content>
