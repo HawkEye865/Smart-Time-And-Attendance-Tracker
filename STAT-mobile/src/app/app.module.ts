@@ -11,6 +11,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { Items } from '../mocks/providers/items';
 import { EntriesPage } from '../pages/entries/entries';
+import { ProjectDetailsPage } from '../pages/project-details/project-details';
 import { Settings, User, Api } from '../providers';
 import { MyApp } from './app.component';
 
@@ -38,7 +39,8 @@ export function provideSettings(storage: Storage) {
 @NgModule({
   declarations: [
     MyApp,
-    EntriesPage
+    EntriesPage,
+    ProjectDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ export function provideSettings(storage: Storage) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    EntriesPage
+    EntriesPage,
+    ProjectDetailsPage
   ],
   providers: [
     Api,

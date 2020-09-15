@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../providers';
+import { ProjectDetailsPage } from '../project-details/project-details';
 
 /**
  * Generated class for the ProjectsPage page.
@@ -139,6 +140,13 @@ export class ProjectsPage {
       day:"2-digit"
     }
     return new Date(d).toLocaleDateString('en-US', options)
+  }
+
+  // show project details
+  showProject(project) {
+    this.navCtrl.push(ProjectDetailsPage, {
+      'project': project
+    })
   }
 
 }

@@ -1,0 +1,23 @@
+page-project-details {
+
+    $colors : #7846eb, #00c8ff, #ff2885, #366ceb;
+    @for $i from 0 through 200 {
+        ion-avatar>span {
+            background-color: nth($colors, random(length($colors)));
+        }
+    }
+
+    ion-avatar>span {
+        display: inline-block;
+        text-align: center;
+        align-items: center;
+        vertical-align: middle;
+        color: #ffffff;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        font-size: 0.8em;
+        letter-spacing: 1px;
+        border-radius: 5em;
+    }
+}
