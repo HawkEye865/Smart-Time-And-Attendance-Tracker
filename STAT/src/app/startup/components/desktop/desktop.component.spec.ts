@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DesktopComponent } from './desktop.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+
 
 describe('DesktopComponent', () => {
   let component: DesktopComponent;
@@ -8,6 +10,7 @@ describe('DesktopComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [ NO_ERRORS_SCHEMA ],
       declarations: [ DesktopComponent ]
     })
     .compileComponents();

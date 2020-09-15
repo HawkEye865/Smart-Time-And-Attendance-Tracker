@@ -2,16 +2,20 @@ import { TestBed, async } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { HeaderService } from './header.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+
+
 describe('Integration Tests:', () => {
 describe('HeaderService', () => {
   let service: HeaderService;
   let router: Router;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:
-      [RouterTestingModule],
       providers: [ RouterTestingModule,
-      {provide: Router, useValue: {navigate: () => {}}}]
+        {provide: Router, useValue: {navigate: () => {}}},
+        NO_ERRORS_SCHEMA],
+      imports: [RouterTestingModule]
     });
     
       service = TestBed.inject(HeaderService);

@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ProjectsComponent } from './projects.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserModule, By} from '@angular/platform-browser';
-import {DebugElement} from '@angular/core';
+import {DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
 import { MaterialComponentsModule } from 'src/app/material-components/material-components.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +25,7 @@ describe('Unit tests:', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [ NO_ERRORS_SCHEMA ],
       declarations: [ ProjectsComponent ],
       imports:
         [ HttpClientTestingModule,
@@ -131,7 +132,8 @@ describe('ProjectsComponent', () => {
           ReactiveFormsModule,
           MaterialComponentsModule,
           MatProgressSpinnerModule,
-          BrowserAnimationsModule
+          BrowserAnimationsModule,
+          NO_ERRORS_SCHEMA
         ]
       })
       .compileComponents().then(()=>

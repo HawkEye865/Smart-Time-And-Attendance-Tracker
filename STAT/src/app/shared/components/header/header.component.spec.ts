@@ -4,6 +4,7 @@ import { HeaderComponent } from './header.component';
 import { HeaderService } from '../../services/header.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('Unit Tests:', () => {
 describe('HeaderComponent', () => {
@@ -12,6 +13,7 @@ describe('HeaderComponent', () => {
   
   beforeEach((async () => {
     TestBed.configureTestingModule({
+      providers: [ NO_ERRORS_SCHEMA ],
       declarations: [ HeaderComponent ],
       imports:
       [RouterTestingModule],
@@ -40,6 +42,7 @@ describe('Integration Tests:', () => {
   
     beforeEach((async () => {
       TestBed.configureTestingModule({
+        providers: [ NO_ERRORS_SCHEMA ],
         declarations: [ HeaderComponent ],
         imports:
         [RouterTestingModule],

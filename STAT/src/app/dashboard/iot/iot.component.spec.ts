@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule,HttpTestingController  } from '@angular/common/http/testing';
 import { IOTComponent } from './iot.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -21,6 +21,7 @@ describe('Unit tests:', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
+        providers: [ NO_ERRORS_SCHEMA ],
         declarations: [ IOTComponent ],
         imports:
         [
@@ -147,7 +148,8 @@ describe('Integration tests:', () => {
             deregisterDevice: () => {}
           }},
           {provide: HeaderService, useValue: {
-            kickOut: () => {}}}
+            kickOut: () => {}}},
+            NO_ERRORS_SCHEMA
          ]
         })
         .compileComponents().then(()=>

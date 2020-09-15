@@ -2,6 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TeamManagementService } from './team-management.service';
 import { async } from 'rxjs/internal/scheduler/async';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+
 
 describe('Unit tests:', () => {
 
@@ -11,8 +14,8 @@ describe('Unit tests:', () => {
     let ROOT_URL = "http://localhost:3000/api/";
     beforeEach(async() => {
       TestBed.configureTestingModule({
+        providers: [TeamManagementService, NO_ERRORS_SCHEMA],
         imports: [HttpClientTestingModule],
-        providers: [TeamManagementService]
       });
       service = TestBed.inject(TeamManagementService);
       HttpMock = TestBed.inject(HttpTestingController);

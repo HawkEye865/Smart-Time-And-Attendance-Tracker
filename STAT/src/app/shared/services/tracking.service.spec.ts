@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TrackingService } from './tracking.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+
 
 describe('Unit tests:', () => {
 describe('TrackingService', () => {
@@ -9,8 +12,8 @@ describe('TrackingService', () => {
   let ROOT_URL = "http://localhost:3000/api/";
   beforeEach(() => {
     TestBed.configureTestingModule({
+      providers: [TrackingService, NO_ERRORS_SCHEMA],
       imports: [HttpClientTestingModule],
-      providers: [TrackingService]
     });
     service = TestBed.inject(TrackingService);
     HttpMock =TestBed.inject(HttpTestingController);

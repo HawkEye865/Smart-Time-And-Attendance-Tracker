@@ -4,7 +4,7 @@ import { HttpClientTestingModule,HttpTestingController  } from '@angular/common/
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -21,6 +21,7 @@ describe('Unit tests', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
+        providers: [ NO_ERRORS_SCHEMA ],
         declarations: [ HistoryComponent ],
         imports:
           [ HttpClientTestingModule,

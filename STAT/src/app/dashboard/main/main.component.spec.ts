@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MainComponent } from './main.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -8,6 +9,7 @@ describe('MainComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [NO_ERRORS_SCHEMA],
       imports: [HttpClientTestingModule],
       declarations: [ MainComponent ]
     })

@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-
 import { AccountManagementService } from './account-management.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+
 describe('Unit tests:', () => {
   describe('AccountManagementService', () => {
     let service: AccountManagementService;
@@ -9,8 +11,8 @@ describe('Unit tests:', () => {
     let ROOT_URL = "http://localhost:3000/api/";
     beforeEach(async() => {
       TestBed.configureTestingModule({
+        providers: [AccountManagementService, NO_ERRORS_SCHEMA]
         imports: [HttpClientTestingModule],
-        providers: [AccountManagementService]
       });
       service = TestBed.inject(AccountManagementService);
       HttpMock =TestBed.inject(HttpTestingController);

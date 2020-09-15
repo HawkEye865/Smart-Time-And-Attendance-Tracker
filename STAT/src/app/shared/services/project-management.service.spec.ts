@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ProjectManagementService } from './project-management.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('Unit tests:', () => {
 describe('ProjectManagementService', () => {
@@ -9,8 +10,8 @@ describe('ProjectManagementService', () => {
   let ROOT_URL = "http://localhost:3000/api/";
   beforeEach(() => {
     TestBed.configureTestingModule({
+      providers: [ProjectManagementService, NO_ERRORS_SCHEMA],
       imports: [HttpClientTestingModule],
-      providers: [ProjectManagementService]
     });
     service = TestBed.inject(ProjectManagementService);
     HttpMock =TestBed.inject(HttpTestingController);

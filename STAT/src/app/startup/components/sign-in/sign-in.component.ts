@@ -3,6 +3,8 @@ import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup } from '
 import { AccountManagementService } from 'src/app/shared/services/account-management.service';
 import { Router } from '@angular/router';
 import { HeaderService } from 'src/app/shared/services/header.service';
+import { MaterialComponentsModule } from 'src/app/material-components/material-components.module';
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @Component({
   selector: 'app-sign-in',

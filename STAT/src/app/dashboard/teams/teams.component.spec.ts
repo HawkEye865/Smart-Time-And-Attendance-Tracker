@@ -4,7 +4,7 @@ import { TeamsComponent } from './teams.component';
 import { HttpClientTestingModule, HttpTestingController  } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialComponentsModule } from 'src/app/material-components/material-components.module';
@@ -18,6 +18,7 @@ describe('TeamsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [ NO_ERRORS_SCHEMA ],
       declarations: [ TeamsComponent ],
       imports:
         [ HttpClientTestingModule,

@@ -5,6 +5,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { AccountManagementService } from 'src/app/shared/services/account-management.service';
 import { of } from 'rxjs';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+
 
 describe('Unit Tests:', () => {
 describe('UnauthorisedComponent', () => {
@@ -13,6 +16,7 @@ describe('UnauthorisedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [ NO_ERRORS_SCHEMA ],
       declarations: [ UnauthorisedComponent ],
       imports:
           [ RouterTestingModule,HttpClientTestingModule]
@@ -41,15 +45,16 @@ describe('Integration Tests:', () => {
   
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        declarations: [ UnauthorisedComponent ],
-        imports:
-            [ RouterTestingModule,HttpClientTestingModule],
         providers: [
           {provide: Router, useValue: {navigate: () => {}}},
           {provide: AccountManagementService, useValue: {
             isAuthenticated: () => {}
-          }}
-          ]
+          }},
+          NO_ERRORS_SCHEMA
+        ],
+        declarations: [ UnauthorisedComponent ],
+        imports:
+            [ RouterTestingModule,HttpClientTestingModule],
         })
       .compileComponents().then(()=>
       {

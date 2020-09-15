@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-
 import { IotManagementService } from './iot-management.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+
 
 describe('Unit Tests', () => {
 describe('IotManagementService:', () => {
@@ -10,8 +12,8 @@ describe('IotManagementService:', () => {
     let ROOT_URL = "http://localhost:3000/api/";
     beforeEach(async() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
-        providers: [IotManagementService]
+        providers: [IotManagementService, NO_ERRORS_SCHEMA],
+        imports: [HttpClientTestingModule]
       });
       service = TestBed.inject(IotManagementService);
       HttpMock =TestBed.inject(HttpTestingController);

@@ -9,6 +9,7 @@ import { SignUpComponent } from './sign-up.component';
 import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('Unit tests:', () => {
   describe('SignUpComponent', () => {
@@ -20,6 +21,7 @@ describe('Unit tests:', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
+        providers: [NO_ERRORS_SCHEMA],
         declarations: [ SignUpComponent ],
         imports:
         [
@@ -210,6 +212,7 @@ describe('Integration tests:', () => {
   
       beforeEach(async(() => {
         TestBed.configureTestingModule({
+          providers: [NO_ERRORS_SCHEMA],
           declarations: [ SignUpComponent ],
           imports:
           [

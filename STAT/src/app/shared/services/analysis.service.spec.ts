@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AnalysisService } from './analysis.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('Unit Tests', () => {
 describe('AnalysisService:', () => {
@@ -9,8 +10,8 @@ describe('AnalysisService:', () => {
     let ROOT_URL = "http://localhost:3000/api/";
     beforeEach(async() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
-        providers: [AnalysisService]
+        providers: [AnalysisService, NO_ERRORS_SCHEMA],
+        imports: [HttpClientTestingModule]
       });
       service = TestBed.inject(AnalysisService);
       HttpMock =TestBed.inject(HttpTestingController);

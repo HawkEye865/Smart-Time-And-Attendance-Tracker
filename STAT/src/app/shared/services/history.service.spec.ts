@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HistoryService } from './history.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+
 
 describe('Unit Tests', () => {
 describe('HistoryService:', () => {
@@ -9,8 +12,8 @@ describe('HistoryService:', () => {
     let ROOT_URL = "http://localhost:3000/api/";
     beforeEach(async() => {
       TestBed.configureTestingModule({
+        providers: [HistoryService, NO_ERRORS_SCHEMA],
         imports: [HttpClientTestingModule],
-        providers: [HistoryService]
       });
       service = TestBed.inject(HistoryService);
       HttpMock =TestBed.inject(HttpTestingController);

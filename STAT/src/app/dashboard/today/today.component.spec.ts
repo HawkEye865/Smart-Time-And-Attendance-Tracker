@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TodayComponent } from './today.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BrowserModule, By} from '@angular/platform-browser';
-import {DebugElement} from '@angular/core';
+import {DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
@@ -40,7 +40,8 @@ describe('TodayComponent', () => {
         MaterialComponentsModule,
         MaterialComponentsModule,
         MatProgressSpinnerModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        NO_ERRORS_SCHEMA
       ]
     })
     .compileComponents().then(()=>
