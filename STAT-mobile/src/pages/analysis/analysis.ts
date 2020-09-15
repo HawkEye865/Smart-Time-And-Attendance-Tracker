@@ -106,7 +106,7 @@ export class AnalysisPage {
   reset() {
     this.getDailyValues();
     this.getDailyMoney();
-    //this.getDevices();
+    this.getDevices();
     //this.getWeeklyProjectsTimes();
     //this.getWeeklyTasksTimes();
     //this.getProAndTasks()        
@@ -275,6 +275,50 @@ export class AnalysisPage {
         }
       )
 
+    },
+    error => {
+      console.log(error);
+      let errorCode = error['status'];
+      if (errorCode == '403')
+      {
+        //this.headerService.kickOut();
+      }
+    });
+  }
+
+  //Get devices user used for the last week
+  getDevices()
+  {
+    this.user.getDevices(localStorage.getItem('token')).subscribe((data) => {
+     // console.log(data);
+
+      this.devices = data['totalDevices']
+
+      // create chart
+      this.devicesChart = new Chart(
+        'devicesChart', {
+          type: 'pie',
+          data: { 
+            datasets: [{
+              data: this.devices.map(t => t.count),
+              backgroundColor: [
+                '#ff2885',
+                '#366ceb',
+                '#8368fc',
+                '#39c0ff'
+            ]
+            }],
+            labels: this.devices.map(t => t._id)
+          },
+          options: {
+            legend: {
+                position: 'right',
+                labels: {usePointStyle: true, fontSize: 15}
+            }
+          }
+        }
+      )
+    
     },
     error => {
       console.log(error);
