@@ -55,7 +55,7 @@ export class AnalysisPage {
 
   // total project times
   projectTimes : any = []
-  projectTimesChart : []
+  projectTimesChart = []
   barChartColors : any = [
     'rgba(54, 108, 235, 0.4)',
     'rgba(255, 40, 133, 0.4)'
@@ -64,17 +64,17 @@ export class AnalysisPage {
 
   // total task times
   tasksTimes : any[] = []
-  taskTimesChart : []
+  taskTimesChart = []
 
   // device breakdown
   devices : any[] = []
-  devicesChart : []
+  devicesChart = []
 
   // task breakdown
-  tasksBDChart : []
+  tasksBDChart = []
 
   // project breakdown
-  projectsBDChart : []
+  projectsBDChart = []
 
   // progress bars
   progress : any[] = []

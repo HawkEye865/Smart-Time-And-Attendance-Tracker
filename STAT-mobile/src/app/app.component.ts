@@ -45,7 +45,7 @@ export class MyApp {
     { title: 'Search', component: 'SearchPage' },
     { title: 'Home', component: 'HomePage' },
     { title: 'Tracking', component: 'TrackingPage' },
-    { title: 'Calendar', component: 'CalendarPage' },
+    { title: 'Projects', component: 'ProjectsPage' },
     { title: 'Analysis', component: 'AnalysisPage' },
     { title: 'Entries', component: 'EntriesPage' }
   ]
