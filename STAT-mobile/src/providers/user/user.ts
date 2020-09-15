@@ -1,84 +1,66 @@
 import 'rxjs/add/operator/toPromise';
 
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { Api } from '../api/api';
-
-/**
- * Most apps have the concept of a User. This is a simple provider
- * with stubs for login/signup/etc.
- *
- * This User provider makes calls to our API at the `login` and `signup` endpoints.
- *
- * By default, it expects `login` and `signup` to return a JSON object of the shape:
- *
- * ```json
- * {
- *   status: 'success',
- *   user: {
- *     // User fields your app needs, like "id", "name", "email", etc.
- *   }
- * }Ø
- * ```
- *
- * If the `status` field is not `success`, then an error is detected and returned.
- */
 @Injectable()
 export class User {
-  _user: any;
+  private ROOT_URL = "http://localhost:3000/api/";
 
-  constructor(public api: Api) { }
+  public roles = localStorage.getItem('roles');
 
-  /**
-   * Send a POST request to our login endpoint with the data
-   * the user entered on the form.
-   */
-  login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
+  constructor(public http: HttpClient) { }
+  //check if authenticated
+  public isAuthenticated(values) {
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json').set( 'Authorization', "Bearer "+values);
 
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      } else {
-      }
-    }, err => {
-      console.error('ERROR', err);
+    return this.http.get(this.ROOT_URL+'user/isAuthenticated', {
+      headers: headers
     });
-
-    return seq;
   }
 
-  /**
-   * Send a POST request to our signup endpoint with the data
-   * the user entered on the form.
-   */
-  signup(accountInfo: any) {
-    let seq = this.api.post('signup', accountInfo).share();
-
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      }
-    }, err => {
-      console.error('ERROR', err);
-    });
-
-    return seq;
-  }
-
-  /**
-   * Log the user out, which forgets the session
-   */
-  logout() {
-    this._user = null;
-  }
-
-  /**
-   * Process a login/signup response to store user data
-   */
-  _loggedIn(resp) {
-    this._user = resp.user;
-  }
+    // sign in
+    public signIn(values){
+      const headers = new HttpHeaders()
+            .set('Content-Type', 'application/json');
+      return this.http.post(this.ROOT_URL+'user/login', JSON.stringify(values), {
+        headers: headers
+      });
+    }
+    //get roles
+    public getRoles(values){
+      const headers = new HttpHeaders()
+            .set('Content-Type', 'application/json').set( 'Authorization', "Bearer "+values);
+      return this.http.get(this.ROOT_URL+'user/getRoles', {
+        headers: headers
+      });
+    }
+    //get name
+    public getName(values){
+      const headers = new HttpHeaders()
+            .set('Content-Type', 'application/json').set( 'Authorization', "Bearer "+values);
+      return this.http.get(this.ROOT_URL+'user/getName', {
+        headers: headers
+      });
+    }
+    //Get user's projects and tasks
+    public getProjectsAndTasks(token){
+      const headers = new HttpHeaders()
+            .set('Content-Type', 'application/json').set( 'Authorization', "Bearer "+token);
+      return this.http.get(this.ROOT_URL+ 'user/getProjects', {
+        headers: headers
+      });
+    }
+    //Get time entries for the day
+    public getTimeEntries(date, token){
+      const headers = new HttpHeaders()
+            .set('Content-Type', 'application/json').set( 'Authorization', "Bearer "+token);
+            let parameters = new HttpParams();
+            parameters = parameters.append('date', date);
+      return this.http.get(this.ROOT_URL+ 'userTimeEntry/getDailyTimeEntries',{
+        params: parameters,
+        headers: headers
+      });
+    }
 }

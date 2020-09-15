@@ -34,7 +34,22 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
-    this.user.login(this.account).subscribe((resp) => {
+    this.user.signIn(this.account).subscribe((data) => {
+      localStorage.setItem('token', data['token']);
+      localStorage.setItem('loggedIn', 'true');
+      this.user.getRoles( localStorage.getItem('token')).subscribe(res => {
+        // console.log(res['roles']);
+   
+         localStorage.setItem('roles', res['roles']);
+         });
+         this.user.getName(localStorage.getItem('token')).subscribe(res => {
+           //console.log(res['roles']);
+           localStorage.setItem('name', res['name']);
+           localStorage.setItem('surname', res['surname']);
+           localStorage.setItem('profilePic', res['profilePicture'])
+           localStorage.setItem('email', this.account['email'])
+           //this.router.navigate(['main']);
+         });
       this.navCtrl.push(MainPage);
     }, (err) => {
       this.navCtrl.push(MainPage);
