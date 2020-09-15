@@ -32,6 +32,7 @@ export class TrackingPage {
   activityVal : number = 0
   entriesVal : number = 0
   tasksVal : any = []
+  projectsVal : any = []
 
   // edit entry
   editing : boolean = false
@@ -75,6 +76,10 @@ export class TrackingPage {
         data['timeEntries'].forEach(element => {
           if (element.taskID != null && !this.tasksVal.includes(element.taskID)) {
             this.tasksVal.push(element.taskID)
+          }
+
+          if (element.projectID != null && !this.projectsVal.includes(element.projectID)) {
+            this.projectsVal.push(element.projectID)
           }
   
           if (this.editing == false)

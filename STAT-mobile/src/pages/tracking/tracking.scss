@@ -1,3 +1,47 @@
 page-tracking {
+    #activity {
+        background-color: #7846eb;
+        font-size: 1.4em;
+        margin-bottom: 0 !important;
+    }
+
+    #entries {
+        background-color: #ff2885;
+        font-size: 1.4em;
+        margin-bottom: 0 !important;
+    }
+
+    #projects {
+        background-color: #00c8ff;
+        font-size: 1.4em;
+        margin-bottom: 1em !important;
+    }
+
+    #tasks {
+        background-color: #366ceb;
+        font-size: 1.4em;
+        margin-bottom: 1em !important;
+    }
+
+    .info {
+        color: white;
+        text-align: center;
+        display: inline-block;
+        width: 47%;
+        margin: 0.3em 0 0.3em 0.3em;
+        padding: 0.8em 0;
     
+      .card-title {
+        top: 36%;
+        font-size: 1em;
+        font-weight: bold;
+        color: #fff;
+      }
+    
+      .card-subtitle {
+        font-size: 0.7em;
+        top: 52%;
+        color: #fff;
+      }
+    }
 }

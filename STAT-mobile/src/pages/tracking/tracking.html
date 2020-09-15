@@ -12,6 +12,23 @@
 
 <ion-content padding>
 
+  <ion-card id="activity" class="info">
+    <div class="card-title">{{getTime(activityVal)}}</div>
+    <div class="card-subtitle">ACTIVITY</div>
+  </ion-card>
+  <ion-card id="entries" class="info">
+    <div class="card-title">{{entriesVal}}</div>
+    <div class="card-subtitle">ENTRIES</div>
+  </ion-card>
+  <ion-card id="tasks" class="info">
+    <div class="card-title">{{projectsVal.length}}</div>
+    <div class="card-subtitle">PROJECTS</div>
+  </ion-card>
+  <ion-card id="projects" class="info">
+    <div class="card-title">{{tasksVal.length}}</div>
+    <div class="card-subtitle">TASKS</div>
+  </ion-card>
+
   <ion-card>
     <ion-card-header>
       My Weekly Entries
