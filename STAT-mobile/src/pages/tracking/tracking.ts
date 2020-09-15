@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../providers';
+import { AddEntryPage } from '../add-entry/add-entry';
 import { EntriesPage } from '../entries/entries';
 
 /**
@@ -17,7 +18,7 @@ import { EntriesPage } from '../entries/entries';
 })
 export class TrackingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public user : User) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public user : User, public modalCtrl: ModalController) {
   }
 
   entries : Object[]
@@ -37,6 +38,10 @@ export class TrackingPage {
   // edit entry
   editing : boolean = false
   editingTime : any = 0
+
+  addEntry() {
+    this.navCtrl.push(AddEntryPage)
+  }
 
   ionViewDidLoad() {
     this.date1.setDate(this.date.getDate()-1)
@@ -171,3 +176,4 @@ export class TrackingPage {
   }
 
 }
+

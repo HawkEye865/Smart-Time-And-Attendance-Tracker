@@ -10,6 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { Items } from '../mocks/providers/items';
+import { AddEntryPage } from '../pages/add-entry/add-entry';
 import { EntriesPage } from '../pages/entries/entries';
 import { ProjectDetailsPage } from '../pages/project-details/project-details';
 import { Settings, User, Api } from '../providers';
@@ -40,7 +41,8 @@ export function provideSettings(storage: Storage) {
   declarations: [
     MyApp,
     EntriesPage,
-    ProjectDetailsPage
+    ProjectDetailsPage,
+    AddEntryPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ export function provideSettings(storage: Storage) {
   entryComponents: [
     MyApp,
     EntriesPage,
-    ProjectDetailsPage
+    ProjectDetailsPage,
+    AddEntryPage
   ],
   providers: [
     Api,

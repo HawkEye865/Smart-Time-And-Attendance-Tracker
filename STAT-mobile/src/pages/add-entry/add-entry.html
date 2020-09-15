@@ -1,0 +1,55 @@
+<!--
+  Generated template for the AddEntryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add Tracking Entry</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Project</ion-label>
+      <ion-select [(ngModel)]="pSelected" (change)="test()" interface="popover">
+        <ion-option *ngFor="let p of allProjects" (click)="getTasks(p.tasks)" value="{{p.ID}}">{{p.projectName}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Task</ion-label>
+      <ion-select [(ngModel)]="tSelected" interface="popover">
+        <ion-option *ngFor="let t of tasks" value="{{t.ID}}">{{p.taskName}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="MMMM DD YYYY" pickerFormat="MMMM DD YYYY" [(ngModel)]="date"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Start Time</ion-label>
+      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="startTime"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>End Time</ion-label>
+      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="endTime"></ion-datetime>
+    </ion-item>
+  
+  </ion-list>
+  
+  <div padding>
+    <button block>Sign In</button>
+  </div>
+</ion-content>

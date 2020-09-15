@@ -34,7 +34,7 @@
       My Weekly Entries
     </ion-card-header>
   
-    <ion-list>
+    <ion-list inset>
       <button ion-item (click)="showEntries($event, date, 'today', week['today'])">
         <span>{{formatWeekDate(date)}}</span>
         <small>today</small>
@@ -68,4 +68,7 @@
     </ion-list>
   </ion-card>
 
+  <ion-fab (click)="addEntry()" right bottom>
+    <button ion-fab color="secondary"><ion-icon name="md-add"></ion-icon></button>
+  </ion-fab>
 </ion-content>
