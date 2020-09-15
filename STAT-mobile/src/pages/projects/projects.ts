@@ -27,7 +27,7 @@ export class ProjectsPage {
   tasksDue : number
   loading : boolean = true
   slides : number = 0
-  upcoming : Object[] = []
+  upcoming : any[] = []
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProjectsPage');
@@ -95,20 +95,34 @@ export class ProjectsPage {
     this.tasksDue = this.tasksNum - this.tasksDone
 
     this.loading = false
-    var taskSlides = this.tasks.length - this.tasks.filter((t : any) => t.taskStatus == 'Completed').length
-    this.slides = Math.ceil(taskSlides / 4)
+    //var taskSlides = this.tasks.length - this.tasks.filter((t : any) => t.taskStatus == 'Completed').length
+    //this.slides = Math.ceil(taskSlides / 4)
 
 
     // get upcoming tasks
+    let dates = []
+    let count = 0
     let tempTasks : Object[] = this.tasks.filter((t : any) => t.taskStatus != 'Completed')
     tempTasks.forEach((element : any) => {
       if (element.dueDate < startDate)
         element['overdue'] = true
+
+      let index = dates.indexOf(this.formatDate(element.dueDate))
+      if (index != -1) {
+        this.upcoming[index].tasks.push(element)
+      } else {
+        this.upcoming[count] = {}
+        this.upcoming[count].date = this.formatDate(element.dueDate)
+        this.upcoming[count].tasks = []
+        this.upcoming[count].tasks.push(element)
+        dates.push(this.formatDate(element.dueDate))
+        count++
+      }
     });
 
-    while (tempTasks.length) {
-      this.upcoming.push(tempTasks.splice(0,4))
-    }
+    //while (tempTasks.length) {
+    //  this.upcoming.push(tempTasks.splice(0,4))
+    //}
     console.log(this.upcoming)
   }
 

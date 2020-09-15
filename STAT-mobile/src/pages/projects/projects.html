@@ -12,4 +12,29 @@
 
 <ion-content padding>
 
+  <!-- PPROJECTS -->
+  <ion-card>
+    <ion-card-header>
+      My Projects
+    </ion-card-header>
+  
+    <ion-list inset>
+      <button ion-item *ngFor="let p of projects" (click)="showProject()">
+        <span>{{p.projectName}}</span>
+        <small item-end>Due {{formatDate(p.dueDate)}}</small>
+      </button>
+    </ion-list>
+  </ion-card>
+
+  <!-- TASKS -->
+  <h2>Upcoming Tasks</h2>
+  <ion-list *ngFor="let u of upcoming">
+    <ion-list-header>{{formatDate(u.date)}}</ion-list-header>
+    <ion-item *ngFor="let t of u.tasks">
+      <h3>{{t.projectName}}</h3>
+      <p>{{t.taskName}}</p>
+      <ion-note item-end *ngIf="t.overdue == true">Overdue</ion-note>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
