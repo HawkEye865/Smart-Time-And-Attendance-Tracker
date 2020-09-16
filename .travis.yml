@@ -7,7 +7,7 @@ matrix:
     - cd STAT
     - npm install
     - npm rebuild
-    - ng test --no-watch --browsers=ChromeHeadless
+    - ng test
     - echo "Finished test"
   branches:
     only:
