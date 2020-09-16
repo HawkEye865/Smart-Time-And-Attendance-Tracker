@@ -5,7 +5,7 @@ matrix:
     - 12.18.2
     script:
     - cd STAT
-    - npm install @angular/cli
+    - npm install
     - ng test --browsers=ChromeHeadless --code-coverage
   branches:
     only:
