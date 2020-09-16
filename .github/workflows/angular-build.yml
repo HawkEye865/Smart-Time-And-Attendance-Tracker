@@ -4,7 +4,7 @@ on:
         branches: [ master, 'app-*' ]
 
 jobs:
-  app-test:
+  angular-coverage:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -16,4 +16,4 @@ jobs:
         node-version: 12.x
     - run: npm install
     - run: npm install -g @angular/cli
-    - run: npm run test-headless
+    - run: ng serve
