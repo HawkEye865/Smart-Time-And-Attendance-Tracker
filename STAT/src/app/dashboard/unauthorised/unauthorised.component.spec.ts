@@ -44,12 +44,12 @@ describe('Integration Tests:', () => {
         declarations: [ UnauthorisedComponent ],
         imports:
             [ RouterTestingModule,HttpClientTestingModule],
-        providers: [
-          {provide: Router, useValue: {navigate: () => {}}},
+        providers: [AccountManagementService, Router]
+          /*{provide: Router, useValue: {navigate: () => {}}},
           {provide: AccountManagementService, useValue: {
             isAuthenticated: () => {}
           }}
-          ]
+          ]*/
         })
       .compileComponents().then(()=>
       {

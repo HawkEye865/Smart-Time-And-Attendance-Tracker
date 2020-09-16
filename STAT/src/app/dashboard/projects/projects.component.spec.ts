@@ -146,6 +146,28 @@ describe('Unit tests:', () => {
     component.popTaskForm({'ID' : 'ad1gv5a2d0gsf6a2fad', 'taskName' : 'Cry', 'dueDate' : '2020/09/26'});
     expect(component.taskToEdit).toEqual({'taskID' : 'ad1gv5a2d0gsf6a2fad', 'taskName' : 'Cry', 'dueDate' : '2020-09-25'});
   }));
+
+  describe('Add Project Form', () => {
+    it('should be invalid with empty details', async(() => {
+      component.addProjectForm.controls['projectName'].setValue('');
+      component.addProjectForm.controls['Project'].setValue('');
+      component.addProjectForm.controls['hourlyRate'].setValue('');
+      expect(component.addProjectForm.valid).toBeFalsy();
+      expect(component.addProjectForm.controls.email.hasError('projectName')).toBe(true);
+      expect(component.addProjectForm.controls.password.hasError('dueDate')).toBe(true);
+      expect(component.addProjectForm.controls.email.hasError('hourlyRate')).toBe(true);
+    }));
+
+  });
+  describe('Add Task Form', () => {
+    it('should be invalid with empty details', async(() => {
+      /*component.addTaskForm.controls['taskName'].setValue('');
+      component.addTaskForm.controls['dueDate'].setValue('');*/
+      expect(component.addTaskForm.valid).toBeFalsy();
+      expect(component.addTaskForm.controls.taskName.hasError('taskName')).toBe(true);
+      expect(component.addTaskForm.controls.dueDate.hasError('dueDate')).toBe(true);
+    }));
+  });
 });
 });
 
@@ -983,28 +1005,7 @@ describe('ProjectsComponent', () => {
       expect(component.deleteTask).toHaveBeenCalledTimes(1);
     }));
 
-      describe('Add Project Form', () => {
-        it('should be invalid with empty details', async(() => {
-          component.addProjectForm.controls['projectName'].setValue('');
-          component.addProjectForm.controls['Project'].setValue('');
-          component.addProjectForm.controls['hourlyRate'].setValue('');
-          expect(component.addProjectForm.valid).toBeFalsy();
-          expect(component.addProjectForm.controls.email.hasError('projectName')).toBe(true);
-          expect(component.addProjectForm.controls.password.hasError('dueDate')).toBe(true);
-          expect(component.addProjectForm.controls.email.hasError('hourlyRate')).toBe(true);
-        }));
-
-      });
-      // ****************************************** END
-      describe('Add Task Form', () => {
-        it('should be invalid with empty details', async(() => {
-          component.addTaskForm.controls['taskName'].setValue('');
-          component.addTaskForm.controls['dueDate'].setValue('');
-          expect(component.addTaskForm.valid).toBeFalsy();
-          expect(component.addTaskForm.controls.taskName.hasError('taskName')).toBe(true);
-          expect(component.addTaskForm.controls.dueDate.hasError('dueDate')).toBe(true);
-        }));
-      });*/
-      // ****************************************** END
+  
+      // ****************************************** END*/
   });
 });

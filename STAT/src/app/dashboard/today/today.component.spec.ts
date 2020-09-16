@@ -64,7 +64,7 @@ describe('TodayComponent', () => {
   }));
 
 
-  /*it('should call the open method when the add button is pressed', async(() => {
+  it('should call the open method when the add button is pressed', async(() => {
     component.trackingNow=false;
 
     spyOn(component,'open');
@@ -74,7 +74,7 @@ describe('TodayComponent', () => {
   }));
 
   it("should call the addManualEntry method when the 'Create an Entry' button is pressed", async(() => {
-    component.autoTracking=false;
+    component.trackingNow=false;
     spyOn(component,'addManualEntry');
     el = fixture.debugElement.query(By.css("#m-tracking")).nativeElement;
     el.click();
@@ -87,34 +87,27 @@ describe('TodayComponent', () => {
     // **************************
     describe('Manual Tracking Form', () => {
       it('should be invalid with empty details', async(() => {
-        component.autoTracking=false;
-        component.manualTrackingForm.controls['Description'].setValue('');
-        component.manualTrackingForm.controls['Project'].setValue('');
-        component.manualTrackingForm.controls['TaskID'].setValue('');
-        component.manualTrackingForm.controls['Date'].setValue('');
-        component.manualTrackingForm.controls['StartTime'].setValue('');
-        component.manualTrackingForm.controls['EndTime'].setValue('');
+        component.trackingNow=false;
+        component.manualTrackingForm.controls['description'].setValue('');
+        component.manualTrackingForm.controls['project'].setValue('');
+        component.manualTrackingForm.controls['taskID'].setValue('');
+        component.manualTrackingForm.controls['date'].setValue('');
+        component.manualTrackingForm.controls['startTime'].setValue('');
+        component.manualTrackingForm.controls['endTime'].setValue('');
+        fixture.detectChanges();
         expect(component.manualTrackingForm.valid).toBeFalsy();
-        expect(component.manualTrackingForm.controls.email.hasError('Project')).toBe(true);
-        expect(component.manualTrackingForm.controls.password.hasError('TaskID')).toBe(true);
-        expect(component.manualTrackingForm.controls.email.hasError('Date')).toBe(true);
-        expect(component.manualTrackingForm.controls.password.hasError('StartTime')).toBe(true);
-        expect(component.manualTrackingForm.controls.passwordConf.hasError('EndTime')).toBe(true);
+  
       }));
       it('should be valid with correct details', async(() => {
-        component.autoTracking=false;
-        component.manualTrackingForm.controls['Description'].setValue('Manual entry');
-        component.manualTrackingForm.controls['Project'].setValue('5f12ed1495236d59d08bc98d');
-        component.manualTrackingForm.controls['TaskID'].setValue('84153a223dgadfh056af1g0');
-        component.manualTrackingForm.controls['Date'].setValue('2020/07/22');
-        component.manualTrackingForm.controls['StartTime'].setValue("15:30");
-        component.manualTrackingForm.controls['EndTime'].setValue("16:42");
+        component.trackingNow=false;
+        component.manualTrackingForm.controls['description'].setValue('Manual entry');
+        component.manualTrackingForm.controls['project'].setValue('5f12ed1495236d59d08bc98d');
+        component.manualTrackingForm.controls['taskID'].setValue('84153a223dgadfh056af1g0');
+        component.manualTrackingForm.controls['date'].setValue('2020/07/22');
+        component.manualTrackingForm.controls['startTime'].setValue("15:30");
+        component.manualTrackingForm.controls['endTime'].setValue("16:42");
+        fixture.detectChanges();
         expect(component.manualTrackingForm.valid).toBeTruthy();
-        expect(component.manualTrackingForm.controls.email.hasError('Project')).toBeFalsy();
-        expect(component.manualTrackingForm.controls.password.hasError('TaskID')).toBeFalsy();
-        expect(component.manualTrackingForm.controls.email.hasError('Date')).toBeFalsy();
-        expect(component.manualTrackingForm.controls.password.hasError('StartTime')).toBeFalsy();
-        expect(component.manualTrackingForm.controls.passwordConf.hasError('EndTime')).toBeFalsy();
       }));
     });
     // ****************************************** END
@@ -123,25 +116,18 @@ describe('TodayComponent', () => {
     // INVALID AUTOMATIC TRACKING FORM TESTS
     // **************************
     describe('Automatic Tracking Form', () => {
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-      component.autoTracking=true;
+
       it('should be invalid with empty details', async(() => {
-        component.automaticTrackingForm.controls['Description'].setValue('');
-        component.automaticTrackingForm.controls['Project'].setValue('');
-        component.automaticTrackingForm.controls['TaskID'].setValue('');
+        component.automaticTrackingForm.controls['description'].setValue('');
+        fixture.detectChanges();
         expect(component.automaticTrackingForm.valid).toBeFalsy();
-        expect(component.automaticTrackingForm.controls.email.hasError('Project')).toBe(true);
-        expect(component.automaticTrackingForm.controls.password.hasError('TaskID')).toBe(true);
+
       }));
       it('should be valid with correct details', async(() => {
-        component.autoTracking=false;
-        component.automaticTrackingForm.controls['Description'].setValue('Timed entry');
-        component.automaticTrackingForm.controls['Project'].setValue('5f12ed1495236d59d08bc98d');
-        component.automaticTrackingForm.controls['TaskID'].setValue('84153a223dgadfh056af1g0');
+        component.automaticTrackingForm.controls['description'].setValue('Timed entry');
+        fixture.detectChanges();
         expect(component.automaticTrackingForm.valid).toBeTruthy();
-        expect(component.automaticTrackingForm.controls.email.hasError('Project')).toBeFalsy();
-        expect(component.automaticTrackingForm.controls.password.hasError('TaskID')).toBeFalsy();
+
       }));
 
     });
@@ -193,7 +179,7 @@ describe('Integration tests:', () => {
   describe('addManualEntry()', () => {
 
     it('should call addMTimeEntry function from the TrackingSevice', async(() => {
-      component.autoTracking=false;
+      component.trackingNow=false;
       component.manualTrackingForm.controls['Description'].setValue('');
         component.manualTrackingForm.controls['Project'].setValue('');
         component.manualTrackingForm.controls['TaskID'].setValue('');
@@ -208,6 +194,6 @@ describe('Integration tests:', () => {
       expect(component.service.addMTimeEntry).toHaveBeenCalledTimes(1);
     }));
 
-    });*/
+    });
 });
 });
