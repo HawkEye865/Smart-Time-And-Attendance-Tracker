@@ -6,7 +6,7 @@ matrix:
     script:
     - cd STAT
     - npm install @
-    - ng test
+    - ng test --browsers=ChromeHeadless --code-coverage
   branches:
     only:
       - master
