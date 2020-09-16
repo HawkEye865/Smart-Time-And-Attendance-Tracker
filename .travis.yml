@@ -6,7 +6,7 @@ matrix:
     script:
     - cd STAT
     - npm install
-    - npm run test-headless
+    - ng test --watch=false --browsers=ChromeHeadless
   branches:
     only:
       - master
